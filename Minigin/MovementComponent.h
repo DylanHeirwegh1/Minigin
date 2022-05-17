@@ -4,14 +4,7 @@
 class MovementComponent : public BaseComponent
 {
 public:
-	void Update() override;
-	void Render() override {};
-	void MoveRight();
-	void MoveLeft();
-	void MoveUp();
-	void MoveDown();
-private:
-	enum class State
+	enum class MovementState
 	{
 		GoingUp = 0,
 		GoingDown = 1,
@@ -19,13 +12,22 @@ private:
 		GoingLeft = 3,
 		Idle = 4
 	};
+	void Update() override;
+	void Render() override {};
+	void MoveRight();
+	void MoveLeft();
+	void MoveUp();
+	void MoveDown();
+	MovementState GetCurrentState();
+
+private:
 
 	void EditOwnerPos(float x, float y = 0);
 	void CalcVelocity();
 	void DetermineState();
 	void UpdateSprite();
 	glm::vec2 m_MovementSpeed{ 100,100 };
-	State m_State = State::Idle;
+	MovementState m_State = MovementState::Idle;
 
 	glm::vec2 m_Velocity{ 0.f,0.f };
 	glm::vec2 m_PrevPos{ 0.f,0.f };

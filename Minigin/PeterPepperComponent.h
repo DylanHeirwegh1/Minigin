@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseComponent.h"
+#include "MovementComponent.h"
 
 class PeterPepperComponent : public BaseComponent
 {
@@ -12,11 +13,10 @@ public:
 	const int GetScore() { return m_Score; }
 	virtual Subject* GetSubject() const { return m_ActorChanged.get(); };
 
-
 private:
 	std::unique_ptr<Subject> m_ActorChanged{ std::make_unique<Subject>() };
 	int m_Lives = 3;
 	int m_Score = 0;
-
+	MovementComponent::MovementState m_CurrentState = MovementComponent::MovementState::Idle;
+	void HandleStateUpdate();
 };
-

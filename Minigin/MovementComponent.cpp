@@ -12,26 +12,31 @@ void MovementComponent::Update()
 
 void MovementComponent::MoveRight()
 {
-	if (m_State == State::GoingUp || m_State == State::GoingDown) return;
+	if (m_State == MovementState::GoingUp || m_State == MovementState::GoingDown) return;
 	EditOwnerPos(m_MovementSpeed.x * Timer::GetInstance().GetElapsedSeconds());
 }
 
 void MovementComponent::MoveLeft()
 {
-	if (m_State == State::GoingUp || m_State == State::GoingDown) return;
+	if (m_State == MovementState::GoingUp || m_State == MovementState::GoingDown) return;
 	EditOwnerPos(-m_MovementSpeed.x * Timer::GetInstance().GetElapsedSeconds());
 }
 
 void MovementComponent::MoveUp()
 {
-	if (m_State == State::GoingLeft || m_State == State::GoingRight) return;
+	if (m_State == MovementState::GoingLeft || m_State == MovementState::GoingRight) return;
 	EditOwnerPos(0, -m_MovementSpeed.y * Timer::GetInstance().GetElapsedSeconds());
 }
 
 void MovementComponent::MoveDown()
 {
-	if (m_State == State::GoingLeft || m_State == State::GoingRight) return;
+	if (m_State == MovementState::GoingLeft || m_State == MovementState::GoingRight) return;
 	EditOwnerPos(0, m_MovementSpeed.y * Timer::GetInstance().GetElapsedSeconds());
+}
+
+MovementComponent::MovementState MovementComponent::GetCurrentState()
+{
+	return m_State;
 }
 
 void MovementComponent::EditOwnerPos(float x, float y)
@@ -53,9 +58,9 @@ void MovementComponent::DetermineState()
 {
 	float x = m_Velocity.x;
 	float y = m_Velocity.y;
-	if (m_Velocity == glm::vec2{ 0, 0 })m_State = State::Idle;
-	else if (y > 0) m_State = State::GoingDown;
-	else if (y < 0) m_State = State::GoingUp;
-	else if (x > 0) m_State = State::GoingRight;
-	else if (x < 0) m_State = State::GoingLeft;
+	if (m_Velocity == glm::vec2{ 0, 0 })m_State = MovementState::Idle;
+	else if (y > 0) m_State = MovementState::GoingDown;
+	else if (y < 0) m_State = MovementState::GoingUp;
+	else if (x > 0) m_State = MovementState::GoingRight;
+	else if (x < 0) m_State = MovementState::GoingLeft;
 }

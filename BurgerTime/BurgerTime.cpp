@@ -46,6 +46,7 @@ void InitGame()
 	pp->AddComponent<MovementComponent>();
 	pp->GetComponent<ImageComponent>()->SetDimensions(40, 40);
 	pp->GetComponent<ImageComponent>()->SetFramesPerSecond(15);
+	pp->AddComponent<PeterPepperComponent>();
 
 	scene.Add(pp);
 

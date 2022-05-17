@@ -91,10 +91,9 @@ void ImageComponent::SetDimensions(float w, float h)
 	m_Scale.y = h;
 }
 
-void ImageComponent::FlipTexture()
+void ImageComponent::FlipTexture(SDL_RendererFlip flip)
 {
-	if (m_CurrRFlip == SDL_FLIP_NONE) m_CurrRFlip = SDL_FLIP_HORIZONTAL;
-	else m_CurrRFlip = SDL_FLIP_NONE;
+	m_CurrRFlip = flip;
 }
 
 void ImageComponent::SetStartFrame(int frame)

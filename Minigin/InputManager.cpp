@@ -93,7 +93,8 @@ bool dae::InputManager::IsKeyDown(unsigned int key) const
 	return m_pKeyboard->IsDown(key);
 }
 
-void dae::InputManager::AddKeyCommand(XBox360Controller::ControllerButton button, std::shared_ptr<Command> command, int controllerID, KeyState keyState)
+void dae::InputManager::AddKeyCommand(XBox360Controller::ControllerButton button, std::shared_ptr<Command> command, int controllerID, KeyState
+	keyState)
 {
 	m_KeyCommands.push_back(XboxKeyCommand(button, command, controllerID, keyState));
 }

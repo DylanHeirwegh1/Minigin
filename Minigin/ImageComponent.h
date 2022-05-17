@@ -11,7 +11,7 @@ public:
 	void MakeAnimated(int rows, int cols, int totalFrames);
 	void SetFramesPerSecond(int fps);
 	void SetDimensions(float w, float h);
-	void FlipTexture();
+	void FlipTexture(SDL_RendererFlip);
 	void SetStartFrame(int frame);
 	void SetEndFrame(int frame);
 
