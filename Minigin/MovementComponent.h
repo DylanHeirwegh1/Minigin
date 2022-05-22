@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseComponent.h"
+#include "RigidBody.h"
 
 class MovementComponent : public BaseComponent
 {
@@ -18,6 +19,7 @@ public:
 	void MoveLeft();
 	void MoveUp();
 	void MoveDown();
+	void SetMovementSpeed(glm::vec2 vel) { m_MovementSpeed = vel; }
 	MovementState GetCurrentState();
 
 private:
@@ -25,10 +27,11 @@ private:
 	void EditOwnerPos(float x, float y = 0);
 	void CalcVelocity();
 	void DetermineState();
-	void UpdateSprite();
+
 	glm::vec2 m_MovementSpeed{ 100,100 };
 	MovementState m_State = MovementState::Idle;
 
 	glm::vec2 m_Velocity{ 0.f,0.f };
 	glm::vec2 m_PrevPos{ 0.f,0.f };
+	RigidBody* m_Rb{ nullptr };
 };

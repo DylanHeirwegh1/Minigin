@@ -19,4 +19,5 @@ private:
 	int m_Score = 0;
 	MovementComponent::MovementState m_CurrentState = MovementComponent::MovementState::Idle;
 	void HandleStateUpdate();
+	void HandleEnemyCollision();
 };

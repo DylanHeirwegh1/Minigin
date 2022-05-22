@@ -43,15 +43,15 @@ void dae::Renderer::Render() const
 	SDL_SetRenderDrawColor(m_Renderer, color.r, color.g, color.b, color.a);
 	SDL_RenderClear(m_Renderer);
 
-	ImGui_ImplOpenGL2_NewFrame();
-	ImGui_ImplSDL2_NewFrame(m_Window);
+	//ImGui_ImplOpenGL2_NewFrame();
+	//ImGui_ImplSDL2_NewFrame(m_Window);
 
-	ImGui::NewFrame();
+	//ImGui::NewFrame();
 
 	SceneManager::GetInstance().Render();
 
-	ImGui::Render();
-	ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
+	//ImGui::Render();
+	//ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
 
 	SDL_RenderPresent(m_Renderer);
 }

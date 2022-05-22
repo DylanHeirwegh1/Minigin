@@ -68,7 +68,6 @@ namespace dae
 				return static_cast<T*>(comp);
 			}
 		}
-		std::cout << "No available";
 		return nullptr;
 	}
 	template<typename T>

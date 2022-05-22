@@ -100,7 +100,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL_MIXER\include;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\imgui-master;$(SolutionDir)3rdParty\steamworks\steam;$(SolutionDir)3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL_MIXER\include;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\rapidjson;$(SolutionDir)3rdParty\imgui-master;$(SolutionDir)3rdParty\steamworks\steam;$(SolutionDir)3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -132,7 +132,7 @@ xcopy $(SolutionDir)3rdParty\SDL_MIXER\lib\$(PlatformTarget)\*.dll $(OutputPath)
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL_MIXER\include;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\imgui-master;$(SolutionDir)3rdParty\steamworks\steam;$(SolutionDir)3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL_MIXER\include;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\rapidjson;$(SolutionDir)3rdParty\imgui-master;$(SolutionDir)3rdParty\steamworks\steam;$(SolutionDir)3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -165,7 +165,7 @@ xcopy $(SolutionDir)3rdParty\SDL_MIXER\lib\$(PlatformTarget)\*.dll $(OutputPath)
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL_MIXER\include;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\imgui-master;$(SolutionDir)3rdParty\steamworks\steam;$(SolutionDir)3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL_MIXER\include;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\rapidjson;$(SolutionDir)3rdParty\imgui-master;$(SolutionDir)3rdParty\steamworks\steam;$(SolutionDir)3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -201,7 +201,7 @@ xcopy $(SolutionDir)3rdParty\SDL_MIXER\lib\$(PlatformTarget)\*.dll $(OutputPath)
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL_MIXER\include;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\imgui-master;$(SolutionDir)3rdParty\steamworks\steam;$(SolutionDir)3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL_MIXER\include;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\rapidjson;$(SolutionDir)3rdParty\imgui-master;$(SolutionDir)3rdParty\steamworks\steam;$(SolutionDir)3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -238,26 +238,32 @@ xcopy $(SolutionDir)3rdParty\SDL_MIXER\lib\$(PlatformTarget)\*.dll $(OutputPath)
     <ClInclude Include="Achievements.h" />
     <ClInclude Include="AudioClip.h" />
     <ClInclude Include="BaseComponent.h" />
+    <ClInclude Include="BTScene.h" />
     <ClInclude Include="BurgerTimeScene.h" />
     <ClInclude Include="Command.h" />
+    <ClInclude Include="EnemyComponent.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="FPSComponent.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="HealthComponent.h" />
-    <ClInclude Include="HelperStructs.h" />
     <ClInclude Include="ImageComponent.h" />
     <ClInclude Include="imgui_plot.h" />
+    <ClInclude Include="IngredientComponent.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="KeyBoard.h" />
+    <ClInclude Include="MenuComponent.h" />
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="MiniginPCH.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="ObserverScene.h" />
     <ClInclude Include="PeterPepperComponent.h" />
+    <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="PlotComponent.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="RigidBody.h" />
+    <ClInclude Include="SceneLoader.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
@@ -321,16 +327,20 @@ xcopy $(SolutionDir)3rdParty\SDL_MIXER\lib\$(PlatformTarget)\*.dll $(OutputPath)
     <ClCompile Include="Achievements.cpp" />
     <ClCompile Include="AudioClip.cpp" />
     <ClCompile Include="BaseComponent.cpp" />
+    <ClCompile Include="BTScene.cpp" />
     <ClCompile Include="BurgerTimeScene.cpp" />
+    <ClCompile Include="EnemyComponent.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="ImageComponent.cpp" />
     <ClCompile Include="imgui_plot.cpp" />
+    <ClCompile Include="IngredientComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="KeyBoard.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MenuComponent.cpp" />
     <ClCompile Include="Minigin.cpp" />
     <ClCompile Include="MiniginPCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -342,10 +352,13 @@ xcopy $(SolutionDir)3rdParty\SDL_MIXER\lib\$(PlatformTarget)\*.dll $(OutputPath)
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="ObserverScene.cpp" />
     <ClCompile Include="PeterPepperComponent.cpp" />
+    <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="PlotComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneLoader.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="SoundScene.cpp" />

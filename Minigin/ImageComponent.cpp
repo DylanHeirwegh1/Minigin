@@ -103,5 +103,5 @@ void ImageComponent::SetStartFrame(int frame)
 
 void ImageComponent::SetEndFrame(int frame)
 {
-	m_EndFrame = frame;
+	m_EndFrame = frame + 1;
 }

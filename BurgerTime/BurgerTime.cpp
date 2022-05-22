@@ -17,50 +17,25 @@
 #include "SceneManager.h"
 #include "TextComponent.h"
 #include <direct.h>
-
+#include "BTScene.h"
+#include "EnemyComponent.h"
 #include "Renderer.h"
+#include <imgui.h>
+
+#include "backends/imgui_impl_opengl2.h"
+#include "backends/imgui_impl_sdl.h"
 
 void InitGame()
 {
-	auto& scene = dae::SceneManager::GetInstance().CreateScene("sound");
-
-	auto Level = std::make_shared<dae::GameObject>();
-	Level->AddComponent<ImageComponent>();
-	Level->GetComponent<ImageComponent>()->SetTexture("Sprites/level.png");
-	auto wSize = dae::Renderer::GetInstance().GetWindowDimensions();
-	Level->SetWorldPosition({ wSize.x / 2,wSize.y,0 });
-	Level->GetComponent<ImageComponent>()->SetDimensions(wSize.x, wSize.y);
-	scene.Add(Level);
-
-	auto FPSTimer = std::make_shared<dae::GameObject>();
-	auto FpsFont = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 24);
-	FPSTimer->AddComponent<TextComponent>()->SetFont(FpsFont);
-	FPSTimer->GetComponent<TextComponent>()->SetColor({ 0,255,0,255 });
-	FPSTimer->AddComponent<FPSComponent>();
-	scene.Add(FPSTimer);
-
-	auto pp = std::make_shared<dae::GameObject>();
-	pp->AddComponent<ImageComponent>()->SetTexture("Sprites/PeterPepper.png");
-	pp->GetComponent<ImageComponent>()->MakeAnimated(2, 9, 6);
-	pp->GetComponent<ImageComponent>()->SetStartFrame(3);
-	pp->AddComponent<MovementComponent>();
-	pp->GetComponent<ImageComponent>()->SetDimensions(40, 40);
-	pp->GetComponent<ImageComponent>()->SetFramesPerSecond(15);
-	pp->AddComponent<PeterPepperComponent>();
-
-	scene.Add(pp);
-
-	dae::InputManager::GetInstance().AddKeyCommand(SDL_SCANCODE_A, std::make_shared<QuitCommand>(nullptr), dae::KeyState::Up);
-
-	dae::InputManager::GetInstance().AddKeyCommand(SDL_SCANCODE_UP, std::make_shared<MoveUpCommand>(pp), dae::KeyState::Down);
-	dae::InputManager::GetInstance().AddKeyCommand(SDL_SCANCODE_DOWN, std::make_shared<MoveDownCommand>(pp), dae::KeyState::Down);
-	dae::InputManager::GetInstance().AddKeyCommand(SDL_SCANCODE_LEFT, std::make_shared<MoveLeftCommand>(pp), dae::KeyState::Down);
-	dae::InputManager::GetInstance().AddKeyCommand(SDL_SCANCODE_RIGHT, std::make_shared<MoveRightCommand>(pp), dae::KeyState::Down);
+	BTScene{};
 }
 int main(int, char* []) {
 	dae::Minigin engine;
 	engine.Initialize();
+
 	InitGame();
+
 	engine.Run();
+
 	return 0;
 }
