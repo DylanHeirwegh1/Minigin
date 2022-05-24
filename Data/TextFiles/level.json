@@ -6,6 +6,26 @@
     "path": "../Data/Sprites/level.png"
   },
   {
+    "type": "plate",
+    "pos": [ 100, 650 ],
+    "size": [ 100, 20 ]
+  },
+  {
+    "type": "plate",
+    "pos": [ 245, 650 ],
+    "size": [ 100, 20 ]
+  },
+  {
+    "type": "plate",
+    "pos": [ 395, 650 ],
+    "size": [ 100, 20 ]
+  },
+  {
+    "type": "plate",
+    "pos": [ 545, 650 ],
+    "size": [ 100, 20 ]
+  },
+  {
     "type": "ingredient",
     "pos": [ 100, 225 ],
     "size": [ 100, 20 ],

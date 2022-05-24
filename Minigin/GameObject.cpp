@@ -22,6 +22,7 @@ dae::GameObject::~GameObject()
 }
 
 void dae::GameObject::Update() {
+	if (!m_Active)return;
 	for (auto component : m_Components)
 	{
 		component->Update();
@@ -34,6 +35,7 @@ void dae::GameObject::Update() {
 
 void dae::GameObject::Render() const
 {
+	if (!m_Active)return;
 	for (auto component : m_Components)
 	{
 		component->Render();
@@ -82,6 +84,11 @@ glm::vec3 dae::GameObject::GetWorldPosition()
 void dae::GameObject::SetWorldPosition(glm::vec3 v)
 {
 	SetLocalPosition(v);
+}
+
+void dae::GameObject::SetActive(bool active)
+{
+	m_Active = active;
 }
 
 void dae::GameObject::RemoveChild(int index)

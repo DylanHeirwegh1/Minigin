@@ -1,6 +1,8 @@
 #pragma once
 
 #include "BaseComponent.h"
+#include "RigidBody.h"
+#include "MovementComponent.h"
 
 class IngredientComponent :
 	public BaseComponent
@@ -8,4 +10,15 @@ class IngredientComponent :
 public:
 	void Render() override;
 	void Update() override;
+	void Initialize(dae::GameObject* owner) override;
+private:
+	void HandleIngredientInteration();
+	void HandlePlayerInteraction();
+	void Drop();
+	bool AreAllSegmentsWalked();
+	void Reset();
+	void HandlePlate();
+	std::pair<float, bool> m_MiddlePoints[5]{};
+	RigidBody* m_Rb = nullptr;
+	MovementComponent* m_Movement = nullptr;
 };

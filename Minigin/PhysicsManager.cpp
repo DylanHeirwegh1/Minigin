@@ -1,7 +1,7 @@
 #include "MiniginPCH.h"
 #include "PhysicsManager.h"
 
-int PhysicsManager::AddRigidBody(glm::vec4 posSize)
+int PhysicsManager::AddRigidBody(dae::GameObject* gameObj, glm::vec4 posSize)
 {
 	++m_IdNr;
 
@@ -11,7 +11,7 @@ int PhysicsManager::AddRigidBody(glm::vec4 posSize)
 	Body b;
 	b.rect = posSize;
 	b.ColType = CollisionType::COLLIDER;
-
+	b.owner = gameObj;
 	m_RigidBodies.insert(std::pair<int, Body>(m_IdNr, b));
 
 	return m_IdNr;
@@ -44,6 +44,11 @@ void PhysicsManager::SetCollision(int id, CollisionType col)
 	m_RigidBodies.at(id).ColType = col;
 }
 
+PhysicsManager::CollisionType PhysicsManager::GetCollision(int m_Id) const
+{
+	return m_RigidBodies.at(m_Id).ColType;
+}
+
 void PhysicsManager::ResetPos(int id, glm::vec2 pos)
 {
 	auto& curr = m_RigidBodies.at(id);
@@ -54,23 +59,59 @@ void PhysicsManager::ResetPos(int id, glm::vec2 pos)
 	curr.rect.y = pos.y;
 }
 
-std::vector<std::string> PhysicsManager::IsOverlapping(int id)
+std::vector<std::string> PhysicsManager::GetOverlappingTags(int id)
 {
 	std::vector<std::string> temp;
 	for (auto element : m_RigidBodies)
 	{
-		if (element.first != id)
-			if (std::find(m_RigidBodies.at(id).OverlappingTags.begin(), m_RigidBodies.at(id).OverlappingTags.end(), element.second.Tag) != m_RigidBodies.at(id).OverlappingTags.end())
-				if (AreOverlapping(element.second.rect, m_RigidBodies.at(id).rect))
-					temp.push_back(element.second.Tag);
+		if (element.second.owner->IsActive())
+			if (element.first != id)
+				if (std::find(m_RigidBodies.at(id).OverlappingTags.begin(), m_RigidBodies.at(id).OverlappingTags.end(), element.second.Tag) != m_RigidBodies.at(id).OverlappingTags.end())
+					if (AreOverlapping(element.second.rect, m_RigidBodies.at(id).rect))
+						temp.push_back(element.second.Tag);
 	}
 	return temp;
+}
+
+std::vector<dae::GameObject*> PhysicsManager::GetOverlappers(int id)
+{
+	std::vector<dae::GameObject*> result;
+	for (auto element : m_RigidBodies)
+	{
+		if (element.second.owner->IsActive())
+			if (element.first != id)
+				if (std::find(m_RigidBodies.at(id).OverlappingTags.begin(), m_RigidBodies.at(id).OverlappingTags.end(), element.second.Tag) != m_RigidBodies.at(id).OverlappingTags.end())
+					if (AreOverlapping(element.second.rect, m_RigidBodies.at(id).rect))
+						result.push_back(element.second.owner);
+	}
+	return result;
+}
+
+std::vector<dae::GameObject*> PhysicsManager::GetOverlappersWithTag(int id, const std::string& tag)
+{
+	std::vector<dae::GameObject*> result;
+	for (auto element : m_RigidBodies)
+	{
+		if (element.second.owner->IsActive())
+			if (element.first != id)
+				if (std::find(m_RigidBodies.at(id).OverlappingTags.begin(), m_RigidBodies.at(id).OverlappingTags.end(), element.second.Tag) != m_RigidBodies.at(id).OverlappingTags.end())
+					if (AreOverlapping(element.second.rect, m_RigidBodies.at(id).rect))
+						if (element.second.Tag == tag)
+							result.push_back(element.second.owner);
+	}
+	return result;
 }
 
 void PhysicsManager::AddOverlappingTags(int id, std::vector<std::string> tags)
 {
 	for (auto element : tags)
 		m_RigidBodies.at(id).OverlappingTags.push_back(element);
+}
+
+void PhysicsManager::RemoveOverlappingTag(int id, std::string tag)
+{
+	auto& tags = m_RigidBodies[id].OverlappingTags;
+	tags.erase(std::remove(tags.begin(), tags.end(), tag), tags.end());
 }
 
 void PhysicsManager::SetTag(int id, std::string tag)

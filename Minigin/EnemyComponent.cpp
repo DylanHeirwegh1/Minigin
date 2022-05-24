@@ -9,8 +9,10 @@ void EnemyComponent::Update()
 {
 	if (!m_MovementComponent) m_MovementComponent = m_Owner->GetComponent<MovementComponent>();
 	if (!m_ImageComponent) m_ImageComponent = m_Owner->GetComponent<ImageComponent>();
+	if (!m_Rb) m_Rb = m_Owner->GetComponent<RigidBody>();
 
 	HandleMovement();
+	HandleInteractions();
 	HandleSprite(m_MovementComponent->GetCurrentState());
 }
 
@@ -35,6 +37,19 @@ void EnemyComponent::HandleMovement()
 
 	if (target.y < myPos.y - epsilon) m_MovementComponent->MoveUp();
 	else if (target.y > myPos.y + epsilon) m_MovementComponent->MoveDown();
+}
+
+void EnemyComponent::HandleInteractions()
+{
+	auto overlappers = m_Rb->GetOverlappersWithTag("Ingredient");
+	if (overlappers.size() == 0) return;
+	for (auto overlapper : overlappers)
+	{
+		if (overlapper->GetComponent<MovementComponent>()->GetCurrentState() == MovementComponent::MovementState::GoingDown)
+		{
+			m_Owner->SetActive(false);
+		}
+	}
 }
 
 void EnemyComponent::HandleSprite(MovementComponent::MovementState state)

@@ -71,7 +71,7 @@ void PeterPepperComponent::HandleEnemyCollision()
 	auto rb = m_Owner->GetComponent<RigidBody>();
 	if (!rb) return;
 
-	for (auto element : rb->GetOverlappers())
+	for (auto element : rb->GetOverlapperTags())
 	{
 		if (element == "Enemy")
 		{

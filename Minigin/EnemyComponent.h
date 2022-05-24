@@ -13,10 +13,12 @@ public:
 
 private:
 	void HandleMovement();
+	void HandleInteractions();
 	void HandleSprite(MovementComponent::MovementState state);
 	dae::GameObject* m_Target{ nullptr };
 	MovementComponent* m_MovementComponent = nullptr;
 	ImageComponent* m_ImageComponent = nullptr;
+	RigidBody* m_Rb = nullptr;
 
 	MovementComponent::MovementState m_CurrentState = MovementComponent::MovementState::Idle;
 };

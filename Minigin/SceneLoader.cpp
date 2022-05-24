@@ -21,10 +21,8 @@ void SceneLoader::LoadLevelFromFile(const wchar_t* path, dae::Scene& scene)
 
 			currBlock->SetWorldPosition({ obj.pos[0],obj.pos[1],0 });
 			currBlock->AddComponent<RigidBody>()->SetSize({ obj.size[0],obj.size[1] });
-			//currBlock->GetComponent<RigidBody>()->SetVisible(true);
+
 			scene.Add(currBlock);
-			std::cout << "pos: " << obj.pos[0] << ", " << obj.pos[1]
-				<< " size: " << obj.size[0] << ", " << obj.size[1] << std::endl;
 		}
 		else if (obj.type == "image")
 		{
@@ -46,12 +44,24 @@ void SceneLoader::LoadLevelFromFile(const wchar_t* path, dae::Scene& scene)
 			ingr->GetComponent<ImageComponent>()->SetDimensions(static_cast<float>(obj.size[0]), static_cast<float>(obj.size[1]));
 
 			ingr->AddComponent<RigidBody>()->SetSize({ static_cast<float>(obj.size[0]), static_cast<float>(obj.size[1]) });
-			ingr->GetComponent<RigidBody>()->SetVisible(true);
+
 			ingr->GetComponent<RigidBody>()->SetTag("Ingredient");
-			ingr->GetComponent<RigidBody>()->OverlapWithTag({ "Player","Enemy" });
+			ingr->GetComponent<RigidBody>()->OverlapWithTag({ "Player","Enemy","Ingredient","Plate" });
 
 			ingr->AddComponent<IngredientComponent>();
+			ingr->AddComponent<MovementComponent>()->SetMovementSpeed({ 0,60 });
 			scene.Add(ingr);
+		}
+		else if (obj.type == "plate")
+		{
+			std::shared_ptr<dae::GameObject> plate = std::make_shared<dae::GameObject>();
+
+			plate->SetWorldPosition({ obj.pos[0],obj.pos[1],0 });
+			plate->AddComponent<RigidBody>()->SetSize({ obj.size[0],obj.size[1] });
+
+			plate->GetComponent<RigidBody>()->SetTag("Plate");
+			plate->GetComponent<RigidBody>()->OverlapWithTag({ "Ingredient" });
+			scene.Add(plate);
 		}
 	}
 }

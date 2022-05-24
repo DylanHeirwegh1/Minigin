@@ -15,6 +15,7 @@ private:
 		int pos[2];
 		int startEndFrame[2];
 		std::string path;
+		std::string tag;
 	};
 	std::vector<Object> m_Objects;
 };

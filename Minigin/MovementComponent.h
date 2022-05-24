@@ -25,13 +25,11 @@ public:
 private:
 
 	void EditOwnerPos(float x, float y = 0);
-	void CalcVelocity();
+
 	void DetermineState();
 
 	glm::vec2 m_MovementSpeed{ 100,100 };
 	MovementState m_State = MovementState::Idle;
 
-	glm::vec2 m_Velocity{ 0.f,0.f };
-	glm::vec2 m_PrevPos{ 0.f,0.f };
 	RigidBody* m_Rb{ nullptr };
 };

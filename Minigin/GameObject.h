@@ -29,6 +29,8 @@ namespace dae
 
 		glm::vec3 GetWorldPosition();
 		void SetWorldPosition(glm::vec3 v);
+		void SetActive(bool active);
+		bool IsActive() { return m_Active; }
 
 	private:
 		void RemoveChild(GameObject* childToReturn);
@@ -47,6 +49,7 @@ namespace dae
 
 		glm::vec3 m_LocalPosition{};
 		bool m_PositionDirty{ true };
+		bool m_Active{ true };
 	};
 
 	//Component handling

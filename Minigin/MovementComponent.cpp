@@ -6,7 +6,6 @@
 
 void MovementComponent::Update()
 {
-	CalcVelocity();
 	DetermineState();
 }
 
@@ -41,36 +40,23 @@ MovementComponent::MovementState MovementComponent::GetCurrentState()
 
 void MovementComponent::EditOwnerPos(float x, float y)
 {
-	if (!m_Rb)
-	{
-		m_Rb = m_Owner->GetComponent<RigidBody>();
-		if (!m_Rb)
-		{
-			auto pos = m_Owner->GetWorldPosition();
-			pos.y += y;
-			pos.x += x;
-			m_Owner->SetWorldPosition(pos);
-			return;
-		}
-	}
 	//call the rigidbody and call the movement there
-	m_Rb->Move(x, y);
-}
-
-void MovementComponent::CalcVelocity()
-{
-	auto currP = m_Owner->GetWorldPosition();
-	m_Velocity = { currP.x - m_PrevPos.x, currP.y - m_PrevPos.y };
-	m_PrevPos = currP;
+	if (m_Rb)m_Rb->Move(x, y);
 }
 
 void MovementComponent::DetermineState()
 {
-	float x = m_Velocity.x;
-	float y = m_Velocity.y;
-	if (m_Velocity == glm::vec2{ 0, 0 })m_State = MovementState::Idle;
-	else if (y > 1) m_State = MovementState::GoingDown;
-	else if (y < -1) m_State = MovementState::GoingUp;
-	else if (x > 1) m_State = MovementState::GoingRight;
-	else if (x < -1) m_State = MovementState::GoingLeft;
+	if (!m_Rb)
+	{
+		m_Rb = m_Owner->GetComponent<RigidBody>();
+		return;
+	}
+	const float x = m_Rb->GetVelocity().x;
+	const float y = m_Rb->GetVelocity().y;
+
+	if (m_Rb->GetVelocity() == glm::vec2{ 0, 0 })m_State = MovementState::Idle;
+	else if (y > .1) m_State = MovementState::GoingDown;
+	else if (y < -.1) m_State = MovementState::GoingUp;
+	else if (x > .1) m_State = MovementState::GoingRight;
+	else if (x < -.1) m_State = MovementState::GoingLeft;
 }

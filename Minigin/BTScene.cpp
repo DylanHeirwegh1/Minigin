@@ -22,11 +22,11 @@ BTScene::BTScene()
 	m_PeterPepper->AddComponent<ImageComponent>()->SetTexture("Sprites/PeterPepper.png");
 	m_PeterPepper->GetComponent<ImageComponent>()->MakeAnimated(2, 9, 6);
 	m_PeterPepper->GetComponent<ImageComponent>()->SetStartFrame(3);
-	m_PeterPepper->AddComponent<MovementComponent>();
+	m_PeterPepper->AddComponent<MovementComponent>()->SetMovementSpeed({ 75,50 });
 	m_PeterPepper->GetComponent<ImageComponent>()->SetDimensions(40, 40);
 	m_PeterPepper->GetComponent<ImageComponent>()->SetFramesPerSecond(15);
 	m_PeterPepper->AddComponent<PeterPepperComponent>();
-	m_PeterPepper->AddComponent<RigidBody>()->SetSize({ 28,40 });
+	m_PeterPepper->AddComponent<RigidBody>()->SetSize({ 28,39 });
 	m_PeterPepper->GetComponent<RigidBody>()->SetTag("Player");
 	m_PeterPepper->GetComponent<RigidBody>()->OverlapWithTag({ "Enemy" , "Ingredient" });
 	scene.Add(m_PeterPepper);
@@ -39,7 +39,7 @@ BTScene::BTScene()
 	m_Sausage->GetComponent<RigidBody>()->SetTag("Enemy");
 
 	m_Sausage->AddComponent<EnemyComponent>()->SetTarget(m_PeterPepper.get());
-	m_Sausage->AddComponent<MovementComponent>()->SetMovementSpeed({ 75,75 });
+	m_Sausage->AddComponent<MovementComponent>()->SetMovementSpeed({ 50,40 });
 	m_Sausage->AddComponent<ImageComponent>()->SetTexture("Sprites/Sausage.png");
 	m_Sausage->GetComponent<ImageComponent>()->SetDimensions(40, 40);
 	m_Sausage->GetComponent<ImageComponent>()->MakeAnimated(1, 6, 3);
