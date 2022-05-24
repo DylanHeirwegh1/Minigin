@@ -11,10 +11,10 @@ public:
 	void Render() override;
 	void Update() override;
 	void Initialize(dae::GameObject* owner) override;
+	void Drop();
 private:
 	void HandleIngredientInteration();
 	void HandlePlayerInteraction();
-	void Drop();
 	bool AreAllSegmentsWalked();
 	void Reset();
 	void HandlePlate();

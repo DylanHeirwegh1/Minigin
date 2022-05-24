@@ -28,8 +28,10 @@ public:
 	std::vector<dae::GameObject*> GetOverlappers();
 	std::vector<dae::GameObject*> GetOverlappersWithTag(const std::string& tag);
 	std::vector<std::string> GetOverlapperTags();
+	glm::vec4 GetColRect();
 
 private:
+
 	glm::vec2 m_Size;
 	int m_Id{ 0 };
 	bool m_Visible = false;

@@ -7,22 +7,22 @@
   },
   {
     "type": "plate",
-    "pos": [ 100, 650 ],
+    "pos": [ 100, 653 ],
     "size": [ 100, 20 ]
   },
   {
     "type": "plate",
-    "pos": [ 245, 650 ],
+    "pos": [ 245, 653 ],
     "size": [ 100, 20 ]
   },
   {
     "type": "plate",
-    "pos": [ 395, 650 ],
+    "pos": [ 395, 653 ],
     "size": [ 100, 20 ]
   },
   {
     "type": "plate",
-    "pos": [ 545, 650 ],
+    "pos": [ 545, 653 ],
     "size": [ 100, 20 ]
   },
   {
@@ -138,157 +138,116 @@
     "path": "../Data/Sprites/burger.png",
     "frames": [ 4, 5 ]
   },
-
   {
     "type": "block",
-    "pos": [ 200, 95 ],
-    "size": [ 1200, 45 ]
+    "pos": [ 318, 140 ],
+    "size": [ 635, 6 ]
   },
   {
     "type": "block",
-    "pos": [ 200, 572 ],
-    "size": [ 1200, 45 ]
+    "pos": [ 465, 227 ],
+    "size": [ 335, 6 ]
   },
-
   {
     "type": "block",
-    "pos": [ 0, 640 ],
-    "size": [ 2, 1200 ]
+    "pos": [ 100, 227 ],
+    "size": [ 185, 6 ]
   },
-
   {
     "type": "block",
-    "pos": [ 640, 640 ],
-    "size": [ 2, 1200 ]
+    "pos": [ 245, 270 ],
+    "size": [ 185, 6 ]
   },
 
   {
     "type": "block",
-    "pos": [ 100, 182 ],
-    "size": [ 110, 45 ]
+    "pos": [ 540, 314 ],
+    "size": [ 190, 6 ]
   },
   {
     "type": "block",
-    "pos": [ 392, 182 ],
-    "size": [ 110, 45 ]
+    "pos": [ 245, 270 ],
+    "size": [ 190, 6 ]
   },
   {
     "type": "block",
-    "pos": [ 540, 182 ],
-    "size": [ 110, 45 ]
+    "pos": [ 100, 316 ],
+    "size": [ 185, 6 ]
   },
-
   {
     "type": "block",
-    "pos": [ 245, 311 ],
-    "size": [ 110, 45 ]
+    "pos": [ 319, 356 ],
+    "size": [ 330, 6 ]
   },
-
   {
     "type": "block",
-    "pos": [ 540, 269 ],
-    "size": [ 110, 45 ]
+    "pos": [ 540, 400 ],
+    "size": [ 185, 6 ]
   },
-
   {
     "type": "block",
-    "pos": [ 245, 398 ],
-    "size": [ 110, 45 ]
+    "pos": [ 245, 443 ],
+    "size": [ 470, 6 ]
   },
-
   {
     "type": "block",
-    "pos": [ 392, 398 ],
-    "size": [ 110, 45 ]
+    "pos": [ 318, 530 ],
+    "size": [ 635, 6 ]
   },
 
   {
-    "type": "block",
-    "pos": [ 100, 485 ],
-    "size": [ 110, 45 ]
+    "type": "ladder",
+    "pos": [ 24, 223 ],
+    "size": [ 5, 87 ]
   },
-
   {
-    "type": "block",
-    "pos": [ 245, 485 ],
-    "size": [ 110, 45 ]
+    "type": "ladder",
+    "pos": [ 100, 438 ],
+    "size": [ 5, 218 ]
   },
-
   {
-    "type": "block",
-    "pos": [ 392, 485 ],
-    "size": [ 110, 45 ]
+    "type": "ladder",
+    "pos": [ 24, 524 ],
+    "size": [ 5, 215 ]
   },
-
   {
-    "type": "block",
-    "pos": [ 280, 225 ],
-    "size": [ 30, 87 ]
+    "type": "ladder",
+    "pos": [ 173, 525 ],
+    "size": [ 5, 389 ]
   },
-
   {
-    "type": "block",
-    "pos": [ 210, 225 ],
-    "size": [ 30, 87 ]
+    "type": "ladder",
+    "pos": [ 320, 525 ],
+    "size": [ 5, 389 ]
   },
-
   {
-    "type": "block",
-    "pos": [ 135, 397 ],
-    "size": [ 30, 87 ]
+    "type": "ladder",
+    "pos": [ 465, 525 ],
+    "size": [ 5, 389 ]
   },
-
   {
-    "type": "block",
-    "pos": [ 62, 397 ],
-    "size": [ 30, 87 ]
+    "type": "ladder",
+    "pos": [ 245, 266 ],
+    "size": [ 5, 130 ]
   },
-
   {
-    "type": "block",
-    "pos": [ 503, 353 ],
-    "size": [ 30, 43 ]
+    "type": "ladder",
+    "pos": [ 392, 350 ],
+    "size": [ 5, 130 ]
   },
-
   {
-    "type": "block",
-    "pos": [ 605, 353 ],
-    "size": [ 95, 43 ]
+    "type": "ladder",
+    "pos": [ 615, 526 ],
+    "size": [ 5, 130 ]
   },
-
   {
-    "type": "block",
-    "pos": [ 355, 310 ],
-    "size": [ 30, 87 ]
+    "type": "ladder",
+    "pos": [ 615, 310 ],
+    "size": [ 5, 174 ]
   },
-
   {
-    "type": "block",
-    "pos": [ 428, 310 ],
-    "size": [ 30, 87 ]
-  },
-
-  {
-    "type": "block",
-    "pos": [ 503, 483 ],
-    "size": [ 30, 87 ]
-  },
-
-  {
-    "type": "block",
-    "pos": [ 575, 483 ],
-    "size": [ 30, 87 ]
-  },
-
-  {
-    "type": "block",
-    "pos": [ 135, 269 ],
-    "size": [ 30, 45 ]
-  },
-
-  {
-    "type": "block",
-    "pos": [ 40, 269 ],
-    "size": [ 70, 45 ]
+    "type": "ladder",
+    "pos": [ 540, 525 ],
+    "size": [ 5, 218 ]
   }
 ]

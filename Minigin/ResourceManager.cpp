@@ -29,15 +29,22 @@ void dae::ResourceManager::Init(const std::string& dataPath)
 	}
 }
 
-std::shared_ptr<dae::Texture2D> dae::ResourceManager::LoadTexture(const std::string& file) const
+std::shared_ptr<dae::Texture2D> dae::ResourceManager::LoadTexture(const std::string& file)
 {
 	const auto fullPath = m_DataPath + file;
-	auto texture = IMG_LoadTexture(Renderer::GetInstance().GetSDLRenderer(), fullPath.c_str());
-	if (texture == nullptr)
+	auto it = m_TextureMap.find(file);
+	if (it == m_TextureMap.end())
 	{
-		throw std::runtime_error(std::string("Failed to load texture at: " + fullPath + ": ") + SDL_GetError());
+		auto texture = IMG_LoadTexture(Renderer::GetInstance().GetSDLRenderer(), fullPath.c_str());
+		if (texture == nullptr)
+		{
+			throw std::runtime_error(std::string("Failed to load texture at: " + fullPath + ": ") + SDL_GetError());
+		}
+		auto result = m_TextureMap.insert(std::make_pair(file, std::make_shared<Texture2D>(texture)));
+		return result.first->second;
 	}
-	return std::make_shared<Texture2D>(texture);
+	std::cout << "Found texture\n";
+	return m_TextureMap.at(file);
 }
 
 std::shared_ptr<dae::Font> dae::ResourceManager::LoadFont(const std::string& file, unsigned int size) const

@@ -20,13 +20,15 @@ public:
 	void MoveUp();
 	void MoveDown();
 	void SetMovementSpeed(glm::vec2 vel) { m_MovementSpeed = vel; }
+	void Fall();
 	MovementState GetCurrentState();
 
 private:
-
+	bool IsGrounded(float posX);
 	void EditOwnerPos(float x, float y = 0);
 
 	void DetermineState();
+	bool IsOnLadder(float yOffset);
 
 	glm::vec2 m_MovementSpeed{ 100,100 };
 	MovementState m_State = MovementState::Idle;

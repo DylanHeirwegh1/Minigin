@@ -129,15 +129,12 @@ bool PhysicsManager::AreOverlapping(glm::vec4 first, glm::vec4 second)
 
 	if (l1.x == r1.x || l1.y == r1.y || l2.x == r2.x
 		|| l2.y == r2.y) {
-		// the line cannot have positive overlap
 		return false;
 	}
 
-	// If one rectangle is on left side of other
 	if (l1.x >= r2.x || l2.x >= r1.x)
 		return false;
 
-	// If one rectangle is above other
 	if (r1.y >= l2.y || r2.y >= l1.y)
 		return false;
 	return true;
@@ -162,4 +159,12 @@ bool PhysicsManager::CanMove(int id, glm::vec2 delta)
 
 	curr.rect = future;
 	return true;
+}
+std::vector<glm::vec4> PhysicsManager::GetColsWithTag(std::string tag)
+{
+	std::vector<glm::vec4>result;
+	for (auto rig : m_RigidBodies)
+		if (rig.second.Tag == tag)result.push_back(rig.second.rect);
+
+	return result;
 }

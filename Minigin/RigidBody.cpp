@@ -10,13 +10,12 @@ void RigidBody::Render()
 
 	auto renderer = dae::Renderer::GetInstance().GetSDLRenderer();
 
-	SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
 
 	auto pos = PhysicsManager::GetInstance().GetCollisionBoundaries(m_Id);
 
 	auto r = SDL_Rect(static_cast<int>(pos.x), static_cast<int>(pos.y), static_cast<int>(pos.z), static_cast<int>(pos.w));
 
-	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 1);
 	SDL_RenderDrawRect(renderer, &r);
 }
 
@@ -123,6 +122,11 @@ std::vector<dae::GameObject*> RigidBody::GetOverlappersWithTag(const std::string
 std::vector<std::string> RigidBody::GetOverlapperTags()
 {
 	return PhysicsManager::GetInstance().GetOverlappingTags(m_Id);
+}
+
+glm::vec4 RigidBody::GetColRect()
+{
+	return PhysicsManager::GetInstance().GetCollisionBoundaries(m_Id);
 }
 
 void RigidBody::CalcVelocity()

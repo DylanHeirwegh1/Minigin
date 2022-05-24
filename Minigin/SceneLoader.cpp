@@ -20,7 +20,10 @@ void SceneLoader::LoadLevelFromFile(const wchar_t* path, dae::Scene& scene)
 			std::shared_ptr<dae::GameObject> currBlock = std::make_shared<dae::GameObject>();
 
 			currBlock->SetWorldPosition({ obj.pos[0],obj.pos[1],0 });
-			currBlock->AddComponent<RigidBody>()->SetSize({ obj.size[0],obj.size[1] });
+			auto rb = currBlock->AddComponent<RigidBody>();
+			rb->SetTag("Block");
+			rb->SetSize({ obj.size[0],obj.size[1] });
+			rb->SetVisible(true);
 
 			scene.Add(currBlock);
 		}
@@ -36,18 +39,17 @@ void SceneLoader::LoadLevelFromFile(const wchar_t* path, dae::Scene& scene)
 		{
 			auto ingr = std::make_shared<dae::GameObject>();
 			ingr->SetWorldPosition({ obj.pos[0],obj.pos[1],0 });
-			ingr->AddComponent<ImageComponent>()->SetTexture(obj.path);
+			auto img = ingr->AddComponent<ImageComponent>();
+			img->SetTexture(obj.path);
+			img->MakeAnimated(6, 1, obj.startEndFrame[1]);
+			img->SetStartFrame(obj.startEndFrame[0]);
+			img->SetDimensions(static_cast<float>(obj.size[0]), static_cast<float>(obj.size[1]));
 
-			ingr->GetComponent<ImageComponent>()->MakeAnimated(6, 1, obj.startEndFrame[1]);
-			ingr->GetComponent<ImageComponent>()->SetStartFrame(obj.startEndFrame[0]);
-
-			ingr->GetComponent<ImageComponent>()->SetDimensions(static_cast<float>(obj.size[0]), static_cast<float>(obj.size[1]));
-
-			ingr->AddComponent<RigidBody>()->SetSize({ static_cast<float>(obj.size[0]), static_cast<float>(obj.size[1]) });
-
-			ingr->GetComponent<RigidBody>()->SetTag("Ingredient");
-			ingr->GetComponent<RigidBody>()->OverlapWithTag({ "Player","Enemy","Ingredient","Plate" });
-
+			auto rb = ingr->AddComponent<RigidBody>();
+			rb->SetSize({ static_cast<float>(obj.size[0]), static_cast<float>(obj.size[1]) });
+			rb->SetTag("Ingredient");
+			rb->OverlapWithTag({ "Player","Enemy","Ingredient","Plate","Ladder" });
+			rb->SetVisible(true);
 			ingr->AddComponent<IngredientComponent>();
 			ingr->AddComponent<MovementComponent>()->SetMovementSpeed({ 0,60 });
 			scene.Add(ingr);
@@ -61,7 +63,20 @@ void SceneLoader::LoadLevelFromFile(const wchar_t* path, dae::Scene& scene)
 
 			plate->GetComponent<RigidBody>()->SetTag("Plate");
 			plate->GetComponent<RigidBody>()->OverlapWithTag({ "Ingredient" });
+			plate->GetComponent<RigidBody>()->SetVisible(true);
 			scene.Add(plate);
+		}
+		else if (obj.type == "ladder")
+		{
+			std::shared_ptr<dae::GameObject>ladder = std::make_shared<dae::GameObject>();
+
+			ladder->SetWorldPosition({ obj.pos[0],obj.pos[1],0 });
+			auto rb = ladder->AddComponent<RigidBody>();
+			rb->SetTag("Ladder");
+			rb->SetSize({ obj.size[0],obj.size[1] });
+			rb->SetVisible(true);
+			rb->OverlapWithTag({ "Player, Enemy, Ingredient" });
+			scene.Add(ladder);
 		}
 	}
 }

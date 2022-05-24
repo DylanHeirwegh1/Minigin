@@ -47,9 +47,9 @@ void IngredientComponent::HandlePlayerInteraction()
 
 void IngredientComponent::Drop()
 {
-	//set collision off for couple of seconds
 	std::cout << "drop";
-	m_Rb->EnableCollision(false);
+	//m_Rb->EnableCollision(false);
+	m_Rb->TurnOffCollisionForSeconds(.5f);
 	//get overlappers and turn on collision when overlapping ingredient
 }
 
@@ -88,32 +88,37 @@ void IngredientComponent::Update()
 	}
 	if (!m_Movement) m_Movement = m_Owner->GetComponent<MovementComponent>();
 
-	m_Movement->MoveDown();
+	m_Movement->Fall();
 	HandlePlayerInteraction();
 	HandleIngredientInteration();
 }
 
 void IngredientComponent::HandleIngredientInteration()
 {
-	auto plates = m_Rb->GetOverlappersWithTag("Plate");
-
-	if (plates.size() != 0)
-		HandlePlate();
-
-	auto overlappers = m_Rb->GetOverlappersWithTag("Ingredient");
-
-	if (overlappers.size() == 0)
-		return;
-
-	if (overlappers[0]->GetComponent<RigidBody>()->IsFrozen())
+	if (m_Movement->GetCurrentState() == MovementComponent::MovementState::GoingDown)
 	{
-		HandlePlate();
-		return;
-	}
+		auto plates = m_Rb->GetOverlappersWithTag("Plate");
 
-	auto otherMov = overlappers[0]->GetComponent<MovementComponent>();
-	if (m_Movement->GetCurrentState() == MovementComponent::MovementState::Idle && otherMov->GetCurrentState() == MovementComponent::MovementState::GoingDown)
-		Drop();
-	else if (m_Movement->GetCurrentState() == MovementComponent::MovementState::GoingDown && otherMov->GetCurrentState() == MovementComponent::MovementState::Idle)
-		m_Rb->EnableCollision(true);
+		if (plates.size() != 0)
+			HandlePlate();
+		auto overlappers = m_Rb->GetOverlappersWithTag("Ingredient");
+
+		if (overlappers.size() == 0)
+			return;
+
+		if (overlappers[0]->GetComponent<RigidBody>()->IsFrozen())
+		{
+			HandlePlate();
+			return;
+		}
+
+		auto otherMov = overlappers[0]->GetComponent<MovementComponent>();
+		if (m_Movement->GetCurrentState() == MovementComponent::MovementState::Idle && otherMov->GetCurrentState() == MovementComponent::MovementState::GoingDown)
+			Drop();
+		else if (m_Movement->GetCurrentState() == MovementComponent::MovementState::GoingDown && otherMov->GetCurrentState() == MovementComponent::MovementState::Idle)
+		{
+			overlappers[0]->GetComponent<IngredientComponent>()->Drop();
+			m_Rb->EnableCollision(true);
+		}
+	}
 }

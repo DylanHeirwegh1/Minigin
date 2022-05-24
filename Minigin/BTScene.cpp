@@ -12,13 +12,14 @@ BTScene::BTScene()
 
 	auto FPSTimer = std::make_shared<dae::GameObject>();
 	auto FpsFont = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 24);
+	FPSTimer->SetWorldPosition({ 200,50,0 });
 	FPSTimer->AddComponent<TextComponent>()->SetFont(FpsFont);
 	FPSTimer->GetComponent<TextComponent>()->SetColor({ 0,255,0,255 });
 	FPSTimer->AddComponent<FPSComponent>();
 	scene.Add(FPSTimer);
 
 	m_PeterPepper = std::make_shared<dae::GameObject>();
-	m_PeterPepper->SetWorldPosition({ 100,231,0 });
+	m_PeterPepper->SetWorldPosition({ 100,220,0 });
 	m_PeterPepper->AddComponent<ImageComponent>()->SetTexture("Sprites/PeterPepper.png");
 	m_PeterPepper->GetComponent<ImageComponent>()->MakeAnimated(2, 9, 6);
 	m_PeterPepper->GetComponent<ImageComponent>()->SetStartFrame(3);
@@ -27,15 +28,18 @@ BTScene::BTScene()
 	m_PeterPepper->GetComponent<ImageComponent>()->SetFramesPerSecond(15);
 	m_PeterPepper->AddComponent<PeterPepperComponent>();
 	m_PeterPepper->AddComponent<RigidBody>()->SetSize({ 28,39 });
+
 	m_PeterPepper->GetComponent<RigidBody>()->SetTag("Player");
-	m_PeterPepper->GetComponent<RigidBody>()->OverlapWithTag({ "Enemy" , "Ingredient" });
+	m_PeterPepper->GetComponent<RigidBody>()->OverlapWithTag({ "Enemy" , "Ingredient","Ladder" });
+	m_PeterPepper->GetComponent<RigidBody>()->SetCollision(PhysicsManager::CollisionType::TRIGGER);
+
 	scene.Add(m_PeterPepper);
 
 	m_Sausage = std::make_shared<dae::GameObject>();
-	m_Sausage->SetWorldPosition({ 399,135,0 });
-	m_Sausage->AddComponent<RigidBody>()->SetSize({ 28,35 });
+	m_Sausage->SetWorldPosition({ 399,138,0 });
+	m_Sausage->AddComponent<RigidBody>()->SetSize({ 28,36 });
 	m_Sausage->GetComponent<RigidBody>()->SetVisible(true);
-	m_Sausage->GetComponent<RigidBody>()->OverlapWithTag({ "Player" , "Ingredient" });
+	m_Sausage->GetComponent<RigidBody>()->OverlapWithTag({ "Player" , "Ingredient","Ladder" });
 	m_Sausage->GetComponent<RigidBody>()->SetTag("Enemy");
 
 	m_Sausage->AddComponent<EnemyComponent>()->SetTarget(m_PeterPepper.get());
@@ -45,6 +49,7 @@ BTScene::BTScene()
 	m_Sausage->GetComponent<ImageComponent>()->MakeAnimated(1, 6, 3);
 	m_Sausage->GetComponent<ImageComponent>()->SetStartFrame(2);
 	m_Sausage->GetComponent<ImageComponent>()->SetFramesPerSecond(10);
+	m_Sausage->GetComponent<RigidBody>()->SetCollision(PhysicsManager::CollisionType::TRIGGER);
 
 	scene.Add(m_Sausage);
 

@@ -25,7 +25,9 @@ public:
 	void SetTag(int id, std::string tag);
 	void SetCollision(int, CollisionType);
 	void ResetPos(int, glm::vec2);
+	bool AreOverlapping(glm::vec4 first, glm::vec4 second);
 	glm::vec4 GetCollisionBoundaries(int id)const;
+	std::vector<glm::vec4> GetColsWithTag(std::string tag);
 
 	std::vector<std::string > GetOverlappingTags(int id);
 	std::vector<dae::GameObject* > GetOverlappers(int id);
@@ -34,6 +36,7 @@ public:
 	CollisionType GetCollision(int m_Id)const;
 
 private:
+
 	struct Body
 	{
 		glm::vec4 rect;
@@ -43,8 +46,6 @@ private:
 		std::vector<std::string> OverlappingTags{};
 		dae::GameObject* owner;
 	};
-
-	bool AreOverlapping(glm::vec4 first, glm::vec4 second);
 
 	std::map<int, Body> m_RigidBodies{};
 	int m_IdNr{ 0 };
