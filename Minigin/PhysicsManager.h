@@ -16,6 +16,7 @@ public:
 	};
 
 	int AddRigidBody(dae::GameObject* gameObj, glm::vec4 posSize);
+	void ClearRigidBodys();
 
 	bool CanMove(int id, glm::vec2 move);
 

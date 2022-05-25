@@ -1,6 +1,8 @@
 #include "MiniginPCH.h"
 #include "KeyBoard.h"
 
+#include "backends/imgui_impl_sdl.h"
+
 KeyBoard::KeyBoard()
 {
 }
@@ -22,6 +24,7 @@ bool KeyBoard::IsReleased(unsigned int key)
 
 void KeyBoard::Update()
 {
+	ImGui_ImplSDL2_ProcessEvent(&m_Event);
 	CopyMemory(&m_PrevState, &m_CurrState, sizeof(bool) * 256);
 	ZeroMemory(&m_CurrState, sizeof(bool) * 256);
 

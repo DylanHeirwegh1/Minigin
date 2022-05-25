@@ -104,6 +104,12 @@ void dae::InputManager::AddKeyCommand(int button, std::shared_ptr<Command> comma
 	m_KeyboardCommands.push_back(KeyBoardKeyCommand(button, command, keyState));
 }
 
+void dae::InputManager::ClearCommands()
+{
+	m_KeyboardCommands.erase(m_KeyboardCommands.begin(), m_KeyboardCommands.end());
+	m_KeyCommands.erase(m_KeyCommands.begin(), m_KeyCommands.end());
+}
+
 void dae::InputManager::AddController(unsigned int ID, std::shared_ptr<GameObject>gameActor)
 {
 	m_controllers.push_back(std::make_unique<XBox360Controller>(ID));

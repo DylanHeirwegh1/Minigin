@@ -22,16 +22,17 @@ public:
 	void SetMovementSpeed(glm::vec2 vel) { m_MovementSpeed = vel; }
 	void Fall();
 	MovementState GetCurrentState();
-
-private:
 	bool IsGrounded(float posX);
+	bool IsOnLadder(float yOffset);
+	void Freeze(bool val);
+private:
 	void EditOwnerPos(float x, float y = 0);
 
 	void DetermineState();
-	bool IsOnLadder(float yOffset);
 
 	glm::vec2 m_MovementSpeed{ 100,100 };
 	MovementState m_State = MovementState::Idle;
-
+	bool m_OnLadder = false;
 	RigidBody* m_Rb{ nullptr };
+	bool m_CanWalk{ true };
 };

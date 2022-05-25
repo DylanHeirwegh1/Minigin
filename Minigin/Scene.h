@@ -8,8 +8,8 @@ namespace dae
 	{
 		friend Scene& SceneManager::CreateScene(const std::string& name);
 	public:
-		void Add(const std::shared_ptr<SceneObject>& object);
-
+		unsigned int Add(const std::shared_ptr<SceneObject>& object);
+		void Remove(unsigned int id);
 		void Update();
 		void Render() const;
 
@@ -19,13 +19,12 @@ namespace dae
 		Scene& operator=(const Scene& other) = delete;
 		Scene& operator=(Scene&& other) = delete;
 
-	private: 
+	protected:
 		explicit Scene(const std::string& name);
 
 		std::string m_Name;
-		std::vector < std::shared_ptr<SceneObject>> m_Objects{};
+		std::vector < std::pair<unsigned int, std::shared_ptr<SceneObject>>> m_Objects{};
 
-		static unsigned int m_IdCounter; 
+		static unsigned int m_IdCounter;
 	};
-
 }

@@ -68,6 +68,7 @@ bool MovementComponent::IsGrounded(float posX)
 void MovementComponent::EditOwnerPos(float x, float y)
 {
 	//call the rigidbody and call the movement there
+	if (!m_CanWalk)return;
 	if (m_Rb)m_Rb->Move(x, y);
 }
 
@@ -91,7 +92,12 @@ void MovementComponent::DetermineState()
 bool MovementComponent::IsOnLadder(float yOffset)
 {
 	if (!m_Rb)
+	{
+		std::cout << "NO RIGID BODY\n";
+		m_Rb = m_Owner->GetComponent<RigidBody>();
 		return false;
+	}
+
 	auto obj = m_Rb->GetOverlappersWithTag("Ladder");
 	if (obj.size() == 0)return false;
 
@@ -105,4 +111,9 @@ bool MovementComponent::IsOnLadder(float yOffset)
 	}
 
 	return (PhysicsManager::GetInstance().AreOverlapping(currRect, otherRect));
+}
+
+void MovementComponent::Freeze(bool val)
+{
+	m_CanWalk = !val;
 }

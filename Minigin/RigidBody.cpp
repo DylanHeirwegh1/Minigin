@@ -4,6 +4,10 @@
 #include "Renderer.h"
 #include "Timer.h"
 
+RigidBody::~RigidBody()
+{
+}
+
 void RigidBody::Render()
 {
 	if (!m_Visible)return;
@@ -40,6 +44,12 @@ void RigidBody::Initialize(dae::GameObject* owner)
 	m_Id = PhysicsManager::GetInstance().AddRigidBody(m_Owner, glm::vec4(p.x, p.y, m_Size.x, m_Size.y));
 }
 
+void RigidBody::RemakeCol()
+{
+	auto p = m_Owner->GetWorldPosition();
+	m_Id = PhysicsManager::GetInstance().AddRigidBody(m_Owner, glm::vec4(p.x, p.y, m_Size.x, m_Size.y));
+}
+
 void RigidBody::SetSize(glm::vec2 size)
 {
 	m_Size = size;
@@ -55,6 +65,8 @@ void RigidBody::Move(float x, float y)
 		pos.y += y;
 		pos.x += x;
 		m_Owner->SetWorldPosition(pos);
+
+		std::cout << pos.x << std::endl;
 	}
 
 	//call the physics manager for permission for the move;

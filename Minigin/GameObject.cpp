@@ -18,6 +18,7 @@ dae::GameObject::~GameObject()
 	for (auto& comp : m_Components)
 	{
 		delete comp;
+		comp = nullptr;
 	}
 }
 

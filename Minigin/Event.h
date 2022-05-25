@@ -4,5 +4,8 @@ enum class Event
 	ActorDied,
 	BunDropped,
 	SaladDropped,
-	EnemyCrushed
+	EnemyCrushed,
+	LoadLevel1,
+	LoadLevel2,
+	LoadLevel3
 };

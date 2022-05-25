@@ -5,21 +5,9 @@
 #include "SceneManager.h"
 #include "Renderer.h"
 #include "ResourceManager.h"
-
-#include "GameObject.h"
-#include "Scene.h"
 #include <chrono>
-
-#include "Achievements.h"
-#include "BurgerTimeScene.h"
 #include "TextComponent.h"
-
 #include "Timer.h"
-#include "FPSComponent.h"
-#include "HealthComponent.h"
-#include "ObserverScene.h"
-#include "ScoreComponent.h"
-#include "SoundScene.h"
 
 using namespace std;
 

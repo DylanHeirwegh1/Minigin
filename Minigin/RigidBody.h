@@ -4,10 +4,12 @@
 class RigidBody : public BaseComponent
 {
 public:
-
+	~RigidBody();
 	void Render() override;
 	void Update() override;
 	void Initialize(dae::GameObject* owner) override;
+
+	void RemakeCol();
 
 	void SetSize(glm::vec2 size);
 	void Move(float x, float y);

@@ -31,6 +31,8 @@ namespace dae
 		void SetWorldPosition(glm::vec3 v);
 		void SetActive(bool active);
 		bool IsActive() { return m_Active; }
+		void SetId(unsigned int id) { m_Id = id; }
+		unsigned int getId() { return m_Id; }
 
 	private:
 		void RemoveChild(GameObject* childToReturn);
@@ -50,6 +52,7 @@ namespace dae
 		glm::vec3 m_LocalPosition{};
 		bool m_PositionDirty{ true };
 		bool m_Active{ true };
+		unsigned int m_Id{ 0 };
 	};
 
 	//Component handling

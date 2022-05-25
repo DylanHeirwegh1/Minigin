@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "MovementComponent.h"
 #include "PeterPepperComponent.h"
+#include "SceneSwitcher.h"
 
 class Command
 {
@@ -59,4 +60,28 @@ class MoveDownCommand : public Command
 public:
 	MoveDownCommand(std::shared_ptr<dae::GameObject> gameActor) : Command(gameActor) {}
 	bool Execute() override { m_GameActor->GetComponent<MovementComponent>()->MoveDown(); return true; }
+};
+class AttackCommand : public Command
+{
+public:
+	AttackCommand(std::shared_ptr<dae::GameObject> gameActor) : Command(gameActor) {}
+	bool Execute() override { m_GameActor->GetComponent<PeterPepperComponent>()->Attack(); return true; }
+};
+class LoadLevelOneCommand : public Command
+{
+public:
+	LoadLevelOneCommand(std::shared_ptr<dae::GameObject> gameActor) : Command(gameActor) {}
+	bool Execute() override { m_GameActor->GetComponent<SceneSwitcher>()->LoadLevel1(); return true; }
+};
+class LoadLevelTwoCommand : public Command
+{
+public:
+	LoadLevelTwoCommand(std::shared_ptr<dae::GameObject> gameActor) : Command(gameActor) {}
+	bool Execute() override { m_GameActor->GetComponent<SceneSwitcher>()->LoadLevel2(); return true; }
+};
+class LoadLevelThreeCommand : public Command
+{
+public:
+	LoadLevelThreeCommand(std::shared_ptr<dae::GameObject> gameActor) : Command(gameActor) {}
+	bool Execute() override { m_GameActor->GetComponent<SceneSwitcher>()->LoadLevel3(); return true; }
 };

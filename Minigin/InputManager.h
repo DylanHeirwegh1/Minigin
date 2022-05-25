@@ -35,7 +35,10 @@ namespace dae
 		bool IsKeyDown(unsigned int key) const;
 
 		void AddKeyCommand(XBox360Controller::ControllerButton button, std::shared_ptr<Command> command, int controllerID, KeyState keyState);
+		void RemoveKeyCommand(XBox360Controller::ControllerButton button);
 		void AddKeyCommand(int key, std::shared_ptr<Command> command, KeyState keyState);
+
+		void ClearCommands();
 
 		void AddController(unsigned int ID, std::shared_ptr<GameObject>gameActor);
 	private:

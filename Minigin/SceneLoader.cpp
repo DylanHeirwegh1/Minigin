@@ -10,6 +10,7 @@
 
 void SceneLoader::LoadLevelFromFile(const wchar_t* path, dae::Scene& scene)
 {
+	PhysicsManager::GetInstance().ClearRigidBodys();
 	ParseFile(path);
 	if (m_Objects.size() == 0) return;
 
@@ -83,6 +84,7 @@ void SceneLoader::LoadLevelFromFile(const wchar_t* path, dae::Scene& scene)
 
 void SceneLoader::ParseFile(const wchar_t* path)
 {
+	m_Objects.clear();
 	Object temp{};
 	FILE* file = nullptr;
 	_wfopen_s(&file, path, L"r");

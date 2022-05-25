@@ -17,6 +17,11 @@ int PhysicsManager::AddRigidBody(dae::GameObject* gameObj, glm::vec4 posSize)
 	return m_IdNr;
 }
 
+void PhysicsManager::ClearRigidBodys()
+{
+	m_RigidBodies.erase(m_RigidBodies.begin(), m_RigidBodies.end());
+}
+
 void PhysicsManager::SetSize(int id, glm::vec2 newsize)
 {
 	auto& curr = m_RigidBodies.at(id).rect;
