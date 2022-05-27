@@ -2,13 +2,12 @@
 #include "AudioClip.h"
 #include <filesystem>
 
-AudioClip::AudioClip(std::string path, float volume)
+AudioClip::AudioClip(std::string path, float volume, int loops)
 	: m_Path{ path }
 	, m_Volume{ volume }
+	, m_Loops{ loops }
 {
 }
-
-
 
 void AudioClip::Play()
 {
@@ -27,7 +26,7 @@ void AudioClip::Play()
 			return;
 		}
 
-		std::cout << "Loaded: " << m_Path << std::endl;
+		//std::cout << "Loaded: " << m_Path << std::endl;
 
 		lock.lock();
 		m_Loaded = true;
@@ -35,8 +34,8 @@ void AudioClip::Play()
 	}
 
 	Mix_Volume(-1, static_cast<int>(m_Volume));
-	Mix_PlayChannel(-1, m_File, 0);
-	std::cout << "Playing: " << m_Path << std::endl;
+	Mix_PlayChannel(-1, m_File, m_Loops);
+	//std::cout << "Playing: " << m_Path << std::endl;
 }
 
 void AudioClip::SetVolume(const float vol)

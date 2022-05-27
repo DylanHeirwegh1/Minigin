@@ -40,7 +40,7 @@ namespace dae
 
 		void ClearCommands();
 
-		void AddController(unsigned int ID, std::shared_ptr<GameObject>gameActor);
+		unsigned int AddController();
 	private:
 		struct XboxKeyCommand
 		{
@@ -75,5 +75,7 @@ namespace dae
 
 		std::vector <std::unique_ptr<XBox360Controller>> m_controllers{};
 		std::unique_ptr<KeyBoard> m_pKeyboard{};
+
+		unsigned int m_ControllerCount = 0;
 	};
 }

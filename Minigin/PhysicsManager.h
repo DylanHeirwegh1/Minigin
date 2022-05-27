@@ -27,6 +27,7 @@ public:
 	void SetCollision(int, CollisionType);
 	void ResetPos(int, glm::vec2);
 	bool AreOverlapping(glm::vec4 first, glm::vec4 second);
+	std::vector <dae::GameObject*> GetObjectsWithTag(std::string tag);
 	glm::vec4 GetCollisionBoundaries(int id)const;
 	std::vector<glm::vec4> GetColsWithTag(std::string tag);
 

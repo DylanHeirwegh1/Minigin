@@ -247,11 +247,13 @@ xcopy $(SolutionDir)3rdParty\SDL_MIXER\lib\$(PlatformTarget)\*.dll $(OutputPath)
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="HealthComponent.h" />
+    <ClInclude Include="HighScoreComponent.h" />
     <ClInclude Include="ImageComponent.h" />
     <ClInclude Include="imgui_plot.h" />
     <ClInclude Include="IngredientComponent.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="KeyBoard.h" />
+    <ClInclude Include="LivesComponent.h" />
     <ClInclude Include="MenuComponent.h" />
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="MiniginPCH.h" />
@@ -336,11 +338,13 @@ xcopy $(SolutionDir)3rdParty\SDL_MIXER\lib\$(PlatformTarget)\*.dll $(OutputPath)
     <ClCompile Include="FPSComponent.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
+    <ClCompile Include="HighScoreComponent.cpp" />
     <ClCompile Include="ImageComponent.cpp" />
     <ClCompile Include="imgui_plot.cpp" />
     <ClCompile Include="IngredientComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="KeyBoard.cpp" />
+    <ClCompile Include="LivesComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuComponent.cpp" />
     <ClCompile Include="Minigin.cpp" />

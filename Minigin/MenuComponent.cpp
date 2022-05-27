@@ -19,12 +19,11 @@ void MenuComponent::Render()
 	ImGui::SetNextWindowPos({ 0,0 });
 	ImGui::Begin("Options", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
-	ImGui::Button("PvE");
+	if (ImGui::Button("Single")) m_Subject->Notify(*m_Owner, Event::SINGLE);
+	else if (ImGui::Button("Co-op")) m_Subject->Notify(*m_Owner, Event::COOP);
+	else if (ImGui::Button("PvP")) m_Subject->Notify(*m_Owner, Event::PVP);
 
-	ImGui::Button("Co-op");
-	ImGui::Button("PvP");
-
-	if (ImGui::Button("Level1")) m_Subject->Notify(*m_Owner, Event::LoadLevel1);
+	else if (ImGui::Button("Level1")) m_Subject->Notify(*m_Owner, Event::LoadLevel1);
 	else if (ImGui::Button("Level2"))m_Subject->Notify(*m_Owner, Event::LoadLevel2);
 	else if (ImGui::Button("Level3"))m_Subject->Notify(*m_Owner, Event::LoadLevel3);
 

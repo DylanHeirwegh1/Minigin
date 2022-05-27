@@ -145,6 +145,17 @@ bool PhysicsManager::AreOverlapping(glm::vec4 first, glm::vec4 second)
 	return true;
 }
 
+std::vector <dae::GameObject*> PhysicsManager::GetObjectsWithTag(std::string tag)
+{
+	std::vector <dae::GameObject*> result;
+	for (auto element : m_RigidBodies)
+	{
+		if (element.second.Tag == tag)
+			result.emplace_back(element.second.owner);
+	}
+	return result;
+}
+
 bool PhysicsManager::CanMove(int id, glm::vec2 delta)
 {
 	auto& curr = m_RigidBodies.at(id);

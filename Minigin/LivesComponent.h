@@ -1,7 +1,7 @@
 #pragma once
 #include "BaseComponent.h"
-
-class ScoreComponent : public BaseComponent, public Observer
+class LivesComponent :
+	public BaseComponent, public Observer
 {
 public:
 	void Notify(const dae::GameObject& actor, Event event) override;
@@ -9,5 +9,5 @@ public:
 	void Render() override;
 
 private:
-	void ChangeText(const dae::GameObject& object);
+	void ChangeText(const dae::GameObject&);
 };

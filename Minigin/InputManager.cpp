@@ -56,7 +56,7 @@ bool dae::InputManager::ProcessInput()
 dae::InputManager::InputManager()
 {
 	//give button and command attached to it.
-	m_controllers.push_back(std::make_unique<XBox360Controller>(1));
+	//m_controllers.push_back(std::make_unique<XBox360Controller>(1));
 	m_pKeyboard = std::make_unique<KeyBoard>();
 }
 
@@ -110,7 +110,10 @@ void dae::InputManager::ClearCommands()
 	m_KeyCommands.erase(m_KeyCommands.begin(), m_KeyCommands.end());
 }
 
-void dae::InputManager::AddController(unsigned int ID, std::shared_ptr<GameObject>gameActor)
+unsigned int dae::InputManager::AddController()
 {
-	m_controllers.push_back(std::make_unique<XBox360Controller>(ID));
+	m_controllers.push_back(std::make_unique<XBox360Controller>(m_ControllerCount));
+	auto result = m_ControllerCount;
+	m_ControllerCount++;
+	return result;
 }

@@ -19,8 +19,8 @@ void Subject::RemoveObserver(Observer* observer)
 
 void Subject::Notify(const dae::GameObject& actor, Event event)
 {
-	for (auto obs : m_Observers)
+	for (size_t i = 0; i < m_Observers.size(); i++)
 	{
-		obs->Notify(actor, event);
+		m_Observers[i]->Notify(actor, event);
 	}
 }

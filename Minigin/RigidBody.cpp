@@ -65,8 +65,6 @@ void RigidBody::Move(float x, float y)
 		pos.y += y;
 		pos.x += x;
 		m_Owner->SetWorldPosition(pos);
-
-		std::cout << pos.x << std::endl;
 	}
 
 	//call the physics manager for permission for the move;

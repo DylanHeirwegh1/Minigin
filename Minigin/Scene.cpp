@@ -10,7 +10,6 @@ Scene::Scene(const std::string& name) : m_Name(name) {}
 
 Scene::~Scene()
 {
-	std::cout << "DESTRUCTOR SCENE\n";
 };
 
 unsigned int Scene::Add(const std::shared_ptr<SceneObject>& object)
@@ -32,15 +31,12 @@ void dae::Scene::Remove(unsigned int id)
 
 void Scene::Update()
 {
-	for (auto& object : m_Objects)
-		object.second->Update();
+	for (size_t i = 0; i < m_Objects.size(); i++)
+		if (m_Objects[i].second)m_Objects[i].second->Update();
 }
 
 void Scene::Render() const
 {
-	for (const auto& object : m_Objects)
-	{
-		if (m_Objects.size() != 0)
-			object.second->Render();
-	}
+	for (size_t i = 0; i < m_Objects.size(); i++)
+		if (m_Objects[i].second)m_Objects[i].second->Render();
 }

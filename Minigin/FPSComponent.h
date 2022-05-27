@@ -12,9 +12,7 @@ public:
 	void Update() override;
 	void SetSecondsPerUpdate(float SecondsPerUpdate);
 
-
 private:
 	float m_SecondsPerUpdate{ .5f };
 	float m_ElapsedTime{ 0.f };
 };
-

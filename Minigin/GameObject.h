@@ -67,19 +67,23 @@ namespace dae
 	template<typename T>
 	inline T* GameObject::GetComponent()const
 	{
-		for (auto comp : m_Components)
+
+		for (size_t i = 0; i < m_Components.size(); i++)
 		{
-			if (typeid(*comp) == typeid(T))
+			if (typeid(*m_Components[i]) == typeid(T))
 			{
-				return static_cast<T*>(comp);
+				return static_cast<T*>(m_Components[i]);
 			}
 		}
+		
 		return nullptr;
 	}
 	template<typename T>
 	inline void GameObject::RemoveComponent()
 	{
 		int index{ 0 };
+
+
 		for (auto comp : m_Components)
 		{
 			if (typeid(*comp) == typeid(T))

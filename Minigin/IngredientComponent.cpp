@@ -1,6 +1,8 @@
 #include "MiniginPCH.h"
 #include "IngredientComponent.h"
 
+#include "PeterPepperComponent.h"
+
 //when a player overlaps, look at the position of the players, compare them to the array positions
 //drop an ingredient when it gets walked over completely
 void IngredientComponent::Initialize(dae::GameObject* owner)
@@ -34,6 +36,7 @@ void IngredientComponent::HandlePlayerInteraction()
 				if ((currPosX < m_MiddlePoints[i].first + offset) && (currPosX > m_MiddlePoints[i].first - offset) && !m_MiddlePoints[i].second)
 				{
 					m_MiddlePoints[i].second = true;
+					m_Subject->Notify(*m_Owner, Event::SegmentWalked);
 					if (AreAllSegmentsWalked())
 					{
 						Drop();
@@ -47,10 +50,8 @@ void IngredientComponent::HandlePlayerInteraction()
 
 void IngredientComponent::Drop()
 {
-	std::cout << "drop";
-	//m_Rb->EnableCollision(false);
+	m_Subject->Notify(*m_Owner, Event::BurgerDropped);
 	m_Rb->TurnOffCollisionForSeconds(.5f);
-	//get overlappers and turn on collision when overlapping ingredient
 }
 
 bool IngredientComponent::AreAllSegmentsWalked()
@@ -75,12 +76,39 @@ void IngredientComponent::HandlePlate()
 	m_Rb->Freeze();
 }
 
+void IngredientComponent::AddObservers()
+{
+	auto players = PhysicsManager::GetInstance().GetObjectsWithTag("Player");
+	if (players.size() == 0)return;;
+	for (auto player : players)
+	{
+		m_Subject->AddObserver(player->GetComponent<PeterPepperComponent>());
+	}
+	m_ObserversAdded = true;
+}
+
+bool IngredientComponent::LevelComplete()
+{
+	auto ingrCol = PhysicsManager::GetInstance().GetColsWithTag("Ingredient");
+	for (size_t i = 0; i < ingrCol.size(); i++)
+	{
+		if (ingrCol[i].y < m_MinYLevel)
+		{
+			std::cout << ingrCol[i].y << std::endl;
+			return false;
+		}
+	}
+	return true;
+}
+
 void IngredientComponent::Render()
 {
 }
 
 void IngredientComponent::Update()
 {
+	if (!m_ObserversAdded) AddObservers();
+
 	if (!m_Rb)
 	{
 		m_Rb = m_Owner->GetComponent<RigidBody>();
@@ -109,6 +137,8 @@ void IngredientComponent::HandleIngredientInteration()
 		if (overlappers[0]->GetComponent<RigidBody>()->IsFrozen())
 		{
 			HandlePlate();
+			if (LevelComplete())
+				m_Subject->Notify(*m_Owner, Event::LevelComplete);
 			return;
 		}
 

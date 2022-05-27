@@ -2,23 +2,24 @@
 #include "BaseComponent.h"
 #include "MovementComponent.h"
 
-class PeterPepperComponent : public BaseComponent
+class PeterPepperComponent : public BaseComponent, public Observer
 {
 public:
 	void Render() override;
 	void Update() override;
 	void Die();
-	void AddScore();
 	const int GetLives() { return m_Lives; };
 	const int GetScore() { return m_Score; }
-	Subject* GetSubject() const { return m_ActorChanged.get(); };
+	Subject* GetSubject() const { return m_Subject.get(); };
 	void Attack();
+	void Notify(const dae::GameObject& actor, Event event) override;
 
 private:
-
+	void AddScore(int score);
+	void InitSound();
 	void HandleAttackRate();
 	void DetermineDirection(std::shared_ptr<dae::GameObject> game);
-	std::unique_ptr<Subject> m_ActorChanged{ std::make_unique<Subject>() };
+	std::unique_ptr<Subject> m_Subject{ std::make_unique<Subject>() };
 	int m_Lives = 3;
 	int m_Score = 0;
 	int m_Peppers = 5;
@@ -30,4 +31,7 @@ private:
 	bool m_CanAttack = true;
 	bool m_CanHandleStates = true;
 	MovementComponent* m_Movement = nullptr;
+	bool m_AddedSound{ false };
+	int m_SoundID = 0;
+	int m_WalkSoundId = 0;
 };

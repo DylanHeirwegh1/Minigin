@@ -18,5 +18,6 @@ namespace dae
 		ResourceManager() = default;
 		std::string m_DataPath;
 		std::map < std::string, std::shared_ptr<Texture2D>> m_TextureMap{};
+		std::map < std::string, std::shared_ptr<Font>> m_FontMap{};
 	};
 }

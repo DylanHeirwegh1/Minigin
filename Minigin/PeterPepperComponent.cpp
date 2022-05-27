@@ -6,6 +6,7 @@
 #include "PepperComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
+#include "SoundSystem.h"
 
 void PeterPepperComponent::Render()
 {
@@ -21,18 +22,15 @@ void PeterPepperComponent::Update()
 void PeterPepperComponent::Die()
 {
 	--m_Lives;
-	m_ActorChanged->Notify(*m_Owner, Event::ActorDied);
-}
-
-void PeterPepperComponent::AddScore()
-{
-	m_Score += 100;
-	m_ActorChanged->Notify(*m_Owner, Event::EnemyCrushed);
+	m_Subject->Notify(*m_Owner, Event::ActorDied);
+	auto& t1 = ServiceLocator::GetSoundSystem();
+	if (!m_AddedSound) InitSound();
+	t1.Play(static_cast<soundId>(m_SoundID), 100);
 }
 
 void PeterPepperComponent::Attack()
 {
-	if (!m_CanAttack || m_Peppers == 0)return;
+	if (!m_CanAttack || m_Peppers == 0 || !m_Owner->IsActive())return;
 	--m_Peppers;
 	m_CanAttack = false;
 	m_Movement->Freeze(true);
@@ -42,7 +40,7 @@ void PeterPepperComponent::Attack()
 	DetermineDirection(pepper);
 	auto rb = pepper->AddComponent<RigidBody>();
 	rb->SetSize({ 50,40 });
-	rb->SetVisible(true);
+	//rb->SetVisible(true);
 	rb->SetTag("Pepper");
 	rb->OverlapWithTag({ "Player", "Block", "Ladder","Enemy", "Ingredient" });
 	rb->SetCollision(PhysicsManager::CollisionType::TRIGGER);
@@ -58,6 +56,45 @@ void PeterPepperComponent::Attack()
 		img->FlipTexture(SDL_FLIP_HORIZONTAL);
 	auto id = scene.Add(pepper);
 	p->SetId(id);
+}
+
+void PeterPepperComponent::Notify(const dae::GameObject& /*actor*/, Event event)
+{
+	switch (event)
+	{
+	case Event::BurgerDropped:
+		AddScore(50);
+		break;
+	case Event::HotDogDied:
+		AddScore(100);
+		break;
+	case Event::PickleDied:
+		AddScore(200);
+		break;
+	case Event::EggDied:
+		AddScore(300);
+		break;
+	case Event::SegmentWalked:
+		if (!m_AddedSound) InitSound();
+		ServiceLocator::GetSoundSystem().Play(static_cast<soundId>(m_WalkSoundId), 100);
+		break;
+	case Event::LevelComplete:
+		m_Subject->Notify(*m_Owner, Event::LevelComplete);
+	}
+}
+
+void PeterPepperComponent::AddScore(int score)
+{
+	m_Score += score;
+	m_Subject->Notify(*m_Owner, Event::ScoreChanged);
+}
+
+void PeterPepperComponent::InitSound()
+{
+	m_AddedSound = true;
+	auto& t1 = ServiceLocator::GetSoundSystem();
+	m_WalkSoundId = t1.AddAudioClip("../Data/Audio/Walk.wav", 100, 0);
+	m_SoundID = t1.AddAudioClip("../Data/Audio/PlayerDeath.mp3", 100, 0);
 }
 
 void PeterPepperComponent::HandleAttackRate()

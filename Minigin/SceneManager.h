@@ -14,7 +14,7 @@ namespace dae
 		void FixedUpdate();
 		void Render();
 		dae::Scene& GetActiveScene();
-		void RemoveScene() { m_Scenes.pop_back(); std::cout << "\nNrOfScenes:" << m_Scenes.size() << std::endl; }
+		void RemoveScene();
 
 	private:
 

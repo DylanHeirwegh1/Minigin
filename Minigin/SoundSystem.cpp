@@ -7,29 +7,30 @@ SoundSystem& ServiceLocator::GetSoundSystem()
 {
 	return *ssInstance;
 }
-void ServiceLocator::RegisterSoundSystem(SoundSystem* ss)
+void ServiceLocator::RegisterSoundSystem(std::shared_ptr<SoundSystem> ss)
 {
-	ssInstance = ss == nullptr ? &defaultSS : ss;
+	ssInstance = ss == nullptr ? defaultSS : ss;
 	ss->StartSoundThread();
 }
-NullSoundSystem ServiceLocator::defaultSS;
-SoundSystem* ServiceLocator::ssInstance = &defaultSS;
+std::shared_ptr<NullSoundSystem> ServiceLocator::defaultSS;
+std::shared_ptr<SoundSystem> ServiceLocator::ssInstance = defaultSS;
 
-int SDLSoundSystem::AddAudioClip(std::string path, float volume)
+int SDLSoundSystem::AddAudioClip(std::string path, float volume, int loops)
 {
-	m_AudioClips.push_back(AudioClip(path, volume));
+	m_AudioClips.push_back(AudioClip(path, volume, loops));
 	return static_cast<int>(m_AudioClips.size()) - 1;
 }
 
 SDLSoundSystem::~SDLSoundSystem()
 {
 	std::cout << "Destructor soundsystem";
+	m_Update = false;
 	m_SoundThread.join();
 	Mix_CloseAudio();
 }
 void SDLSoundSystem::Update()
 {
-	while (true)
+	while (m_Update)
 	{
 		for (int i = 0; i < m_NrPending; i++)
 		{

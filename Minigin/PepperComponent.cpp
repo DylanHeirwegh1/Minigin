@@ -8,7 +8,6 @@ void PepperComponent::Update()
 	m_AccuTime += Timer::GetInstance().GetElapsedSeconds();
 	if (m_AccuTime > m_MaxTime)
 	{
-		std::cout << "Update";
 		dae::SceneManager::GetInstance().GetActiveScene().Remove(m_Id);
 		return;
 	}

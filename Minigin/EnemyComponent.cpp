@@ -27,7 +27,21 @@ void EnemyComponent::SetTarget(dae::GameObject* target)
 }
 void EnemyComponent::Die()
 {
+	if (m_Dead)return;
 	m_Dead = true;
+
+	switch (m_Type)
+	{
+	case Type::Hotdog:
+		m_Subject->Notify(*m_Owner, Event::HotDogDied);
+		break;
+	case Type::Egg:
+		m_Subject->Notify(*m_Owner, Event::EggDied);
+		break;
+	case Type::Pickle:
+		m_Subject->Notify(*m_Owner, Event::PickleDied);
+		break;
+	}
 }
 void EnemyComponent::Stun()
 {
@@ -36,6 +50,7 @@ void EnemyComponent::Stun()
 void EnemyComponent::HandleMovement()
 {
 	if (!m_MovementComponent) return;
+	if (m_IsPlayer) return;
 
 	auto target = m_Target->GetWorldPosition();
 	auto myPos = m_Owner->GetWorldPosition();

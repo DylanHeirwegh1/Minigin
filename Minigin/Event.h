@@ -2,10 +2,18 @@
 enum class Event
 {
 	ActorDied,
-	BunDropped,
-	SaladDropped,
-	EnemyCrushed,
+	BurgerDropped,
+	HotDogDied,
+	PickleDied,
+	EggDied,
 	LoadLevel1,
 	LoadLevel2,
-	LoadLevel3
+	LoadLevel3,
+	COOP,
+	SINGLE,
+	PVP,
+	SegmentWalked,
+	ScoreChanged,
+	GameOver,
+	LevelComplete
 };

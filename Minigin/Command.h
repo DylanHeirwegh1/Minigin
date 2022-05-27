@@ -15,21 +15,6 @@ protected:
 	std::shared_ptr<dae::GameObject> m_GameActor{ nullptr };
 };
 
-class DieCommand : public Command
-{
-public:
-	DieCommand(std::shared_ptr<dae::GameObject> gameActor) : Command(gameActor) {}
-	bool Execute() override {
-		m_GameActor->GetComponent<PeterPepperComponent>()->Die(); return true;
-	}
-};
-class AddScoreCommand : public Command
-{
-public:
-	AddScoreCommand(std::shared_ptr<dae::GameObject> gameActor) : Command(gameActor) {}
-	bool Execute() override { m_GameActor->GetComponent<PeterPepperComponent>()->AddScore(); return true; }
-};
-
 class QuitCommand : public Command
 {
 public:
@@ -53,7 +38,10 @@ class MoveUpCommand : public Command
 {
 public:
 	MoveUpCommand(std::shared_ptr<dae::GameObject> gameActor) : Command(gameActor) {}
-	bool Execute() override { m_GameActor->GetComponent<MovementComponent>()->MoveUp(); return true; }
+	bool Execute() override
+	{
+		m_GameActor->GetComponent<MovementComponent>()->MoveUp(); return true;
+	}
 };
 class MoveDownCommand : public Command
 {
@@ -71,17 +59,35 @@ class LoadLevelOneCommand : public Command
 {
 public:
 	LoadLevelOneCommand(std::shared_ptr<dae::GameObject> gameActor) : Command(gameActor) {}
-	bool Execute() override { m_GameActor->GetComponent<SceneSwitcher>()->LoadLevel1(); return true; }
+	bool Execute() override { m_GameActor->GetComponent<SceneSwitcher>()->LoadLevel(1); return true; }
 };
 class LoadLevelTwoCommand : public Command
 {
 public:
 	LoadLevelTwoCommand(std::shared_ptr<dae::GameObject> gameActor) : Command(gameActor) {}
-	bool Execute() override { m_GameActor->GetComponent<SceneSwitcher>()->LoadLevel2(); return true; }
+	bool Execute() override { m_GameActor->GetComponent<SceneSwitcher>()->LoadLevel(2); return true; }
 };
 class LoadLevelThreeCommand : public Command
 {
 public:
 	LoadLevelThreeCommand(std::shared_ptr<dae::GameObject> gameActor) : Command(gameActor) {}
-	bool Execute() override { m_GameActor->GetComponent<SceneSwitcher>()->LoadLevel3(); return true; }
+	bool Execute() override { m_GameActor->GetComponent<SceneSwitcher>()->LoadLevel(3); return true; }
+};
+class SwitchToCoopCommand : public Command
+{
+public:
+	SwitchToCoopCommand(std::shared_ptr<dae::GameObject> gameActor) : Command(gameActor) {}
+	bool Execute() override { m_GameActor->GetComponent<SceneSwitcher>()->SwitchGameMode(SceneSwitcher::GameMode::COOP); return true; }
+};
+class SwitchToPvpCommand : public Command
+{
+public:
+	SwitchToPvpCommand(std::shared_ptr<dae::GameObject> gameActor) : Command(gameActor) {}
+	bool Execute() override { m_GameActor->GetComponent<SceneSwitcher>()->SwitchGameMode(SceneSwitcher::GameMode::PVP); return true; }
+};
+class SwitchToSingleCommand : public Command
+{
+public:
+	SwitchToSingleCommand(std::shared_ptr<dae::GameObject> gameActor) : Command(gameActor) {}
+	bool Execute() override { m_GameActor->GetComponent<SceneSwitcher>()->SwitchGameMode(SceneSwitcher::GameMode::SINGLE); return true; }
 };

@@ -24,22 +24,27 @@ dae::GameObject::~GameObject()
 
 void dae::GameObject::Update() {
 	if (!m_Active)return;
-	for (auto component : m_Components)
+
+	for (size_t i = 0; i < m_Components.size(); i++)
+	{
+		m_Components[i]->Update();
+	}
+
+	/*for (auto component : m_Components)
 	{
 		component->Update();
-	}
-	for (auto child : m_Children)
-	{
-		child->Update();
-	}
+	}*/
+	for (size_t i = 0; i < m_Children.size(); i++)
+		m_Children[i]->Update();
 }
 
 void dae::GameObject::Render() const
 {
 	if (!m_Active)return;
-	for (auto component : m_Components)
+
+	for (size_t i = 0; i < m_Components.size(); i++)
 	{
-		component->Render();
+		m_Components[i]->Render();
 	}
 }
 

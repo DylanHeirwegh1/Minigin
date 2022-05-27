@@ -93,7 +93,6 @@ bool MovementComponent::IsOnLadder(float yOffset)
 {
 	if (!m_Rb)
 	{
-		std::cout << "NO RIGID BODY\n";
 		m_Rb = m_Owner->GetComponent<RigidBody>();
 		return false;
 	}

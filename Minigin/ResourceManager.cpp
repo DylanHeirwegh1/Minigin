@@ -43,7 +43,6 @@ std::shared_ptr<dae::Texture2D> dae::ResourceManager::LoadTexture(const std::str
 		auto result = m_TextureMap.insert(std::make_pair(file, std::make_shared<Texture2D>(texture)));
 		return result.first->second;
 	}
-	std::cout << "Found texture\n";
 	return m_TextureMap.at(file);
 }
 

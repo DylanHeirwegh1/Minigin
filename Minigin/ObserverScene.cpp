@@ -73,11 +73,6 @@ ObserverScene::ObserverScene()
 	scene.Add(PeterPepper2);
 	scene.Add(Health2);
 	scene.Add(Score2);
-
-	dae::InputManager::GetInstance().AddKeyCommand(XBox360Controller::ControllerButton::ButtonA, std::make_shared<DieCommand>(PeterPepper), 1, dae::KeyState::Down);
-	dae::InputManager::GetInstance().AddKeyCommand(XBox360Controller::ControllerButton::ButtonB, std::make_shared<QuitCommand>(PeterPepper), 1, dae::KeyState::Down);
-	dae::InputManager::GetInstance().AddKeyCommand(XBox360Controller::ControllerButton::ButtonA, std::make_shared<DieCommand>(PeterPepper2), 0, dae::KeyState::Down);
-	dae::InputManager::GetInstance().AddKeyCommand(XBox360Controller::ControllerButton::ButtonB, std::make_shared<QuitCommand>(PeterPepper2), 0, dae::KeyState::Down);
 }
 
 ObserverScene::~ObserverScene()
