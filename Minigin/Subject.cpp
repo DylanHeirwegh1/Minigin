@@ -12,7 +12,7 @@ void Subject::RemoveObserver(Observer* observer)
 	{
 		if (observer == m_Observers[i])
 		{
-			m_Observers.erase(m_Observers.begin() + i);
+			m_Observers.erase(std::remove(m_Observers.begin(), m_Observers.end(), m_Observers[i]));
 		}
 	}
 }

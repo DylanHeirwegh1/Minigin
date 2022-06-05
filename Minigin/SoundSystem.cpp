@@ -41,6 +41,10 @@ void SDLSoundSystem::Update()
 	}
 }
 
+void SDLSoundSystem::HandleDeath()
+{
+}
+
 void SDLSoundSystem::Play(const soundId id, const float volume)
 {
 	if (id >= m_AudioClips.size()) return;

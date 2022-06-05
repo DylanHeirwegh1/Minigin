@@ -14,13 +14,13 @@ namespace dae
 		void FixedUpdate();
 		void Render();
 		dae::Scene& GetActiveScene();
-		void RemoveScene();
+		void RemoveOld();
 
 	private:
 
 		friend class Singleton<SceneManager>;
 		SceneManager() = default;
-		std::vector<std::shared_ptr<Scene>> m_Scenes;
-		Scene* m_ActiveScene{};
+		std::shared_ptr<Scene> m_ActiveScene{};
+		std::shared_ptr<Scene> m_Old{};
 	};
 }

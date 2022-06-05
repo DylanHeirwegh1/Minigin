@@ -7,7 +7,7 @@
 
 HealthComponent::HealthComponent()
 {
-	SDL_GetAudioDriver(0);
+	//SDL_GetAudioDriver(0);
 }
 
 void HealthComponent::Render()

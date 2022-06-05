@@ -15,5 +15,7 @@ enum class Event
 	SegmentWalked,
 	ScoreChanged,
 	GameOver,
-	LevelComplete
+	LevelComplete,
+	EnemyDied,
+	PepperThrown
 };

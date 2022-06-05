@@ -1,15 +1,15 @@
 #include "MiniginPCH.h"
 #include "BTScene.h"
 #include "SceneLoader.h"
-#include "MenuComponent.h"
+//#include "MenuComponent.h"
 #include "ResourceManager.h"
 #include "TextComponent.h"
 #include "EnemyComponent.h"
 #include "Renderer.h"
 #include "SceneSwitcher.h"
 #include "SoundSystem.h"
-#include "backends/imgui_impl_opengl2.h"
-#include "backends/imgui_impl_sdl.h"
+//#include "backends/imgui_impl_opengl2.h"
+//#include "backends/imgui_impl_sdl.h"
 
 class EnemyComponent;
 

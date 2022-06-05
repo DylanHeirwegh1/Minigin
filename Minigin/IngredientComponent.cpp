@@ -28,7 +28,7 @@ void IngredientComponent::HandlePlayerInteraction()
 	auto overlappers = m_Rb->GetOverlappersWithTag("Player");
 	if (overlappers.size() != 0)
 	{
-		for (auto overlapper : overlappers)
+		for (const auto& overlapper : overlappers)
 		{
 			float currPosX = overlapper->GetWorldPosition().x;
 			for (size_t i = 0; i < 5; i++)
@@ -79,11 +79,10 @@ void IngredientComponent::HandlePlate()
 void IngredientComponent::AddObservers()
 {
 	auto players = PhysicsManager::GetInstance().GetObjectsWithTag("Player");
-	if (players.size() == 0)return;;
-	for (auto player : players)
-	{
-		m_Subject->AddObserver(player->GetComponent<PeterPepperComponent>());
-	}
+	if (players.size() == 0)return;
+
+	m_Subject->AddObserver(players[0]->GetComponent<PeterPepperComponent>());
+
 	m_ObserversAdded = true;
 }
 

@@ -22,6 +22,11 @@ void LivesComponent::Render()
 {
 }
 
+void LivesComponent::Refresh(const dae::GameObject& actor)
+{
+	ChangeText(actor);
+}
+
 void LivesComponent::ChangeText(const dae::GameObject& actor)
 {
 	auto text = m_Owner->GetComponent<TextComponent>();

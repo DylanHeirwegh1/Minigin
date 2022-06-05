@@ -67,7 +67,7 @@ void PhysicsManager::ResetPos(int id, glm::vec2 pos)
 std::vector<std::string> PhysicsManager::GetOverlappingTags(int id)
 {
 	std::vector<std::string> temp;
-	for (auto element : m_RigidBodies)
+	for (const auto& element : m_RigidBodies)
 	{
 		if (element.second.owner->IsActive())
 			if (element.first != id)
@@ -81,7 +81,7 @@ std::vector<std::string> PhysicsManager::GetOverlappingTags(int id)
 std::vector<dae::GameObject*> PhysicsManager::GetOverlappers(int id)
 {
 	std::vector<dae::GameObject*> result;
-	for (auto element : m_RigidBodies)
+	for (const auto& element : m_RigidBodies)
 	{
 		if (element.second.owner->IsActive())
 			if (element.first != id)
@@ -95,7 +95,7 @@ std::vector<dae::GameObject*> PhysicsManager::GetOverlappers(int id)
 std::vector<dae::GameObject*> PhysicsManager::GetOverlappersWithTag(int id, const std::string& tag)
 {
 	std::vector<dae::GameObject*> result;
-	for (auto element : m_RigidBodies)
+	for (const auto& element : m_RigidBodies)
 	{
 		if (element.second.owner->IsActive())
 			if (element.first != id)
@@ -109,7 +109,7 @@ std::vector<dae::GameObject*> PhysicsManager::GetOverlappersWithTag(int id, cons
 
 void PhysicsManager::AddOverlappingTags(int id, std::vector<std::string> tags)
 {
-	for (auto element : tags)
+	for (const auto& element : tags)
 		m_RigidBodies.at(id).OverlappingTags.push_back(element);
 }
 
@@ -148,7 +148,7 @@ bool PhysicsManager::AreOverlapping(glm::vec4 first, glm::vec4 second)
 std::vector <dae::GameObject*> PhysicsManager::GetObjectsWithTag(std::string tag)
 {
 	std::vector <dae::GameObject*> result;
-	for (auto element : m_RigidBodies)
+	for (const auto& element : m_RigidBodies)
 	{
 		if (element.second.Tag == tag)
 			result.emplace_back(element.second.owner);
@@ -179,7 +179,7 @@ bool PhysicsManager::CanMove(int id, glm::vec2 delta)
 std::vector<glm::vec4> PhysicsManager::GetColsWithTag(std::string tag)
 {
 	std::vector<glm::vec4>result;
-	for (auto rig : m_RigidBodies)
+	for (const auto& rig : m_RigidBodies)
 		if (rig.second.Tag == tag)result.push_back(rig.second.rect);
 
 	return result;

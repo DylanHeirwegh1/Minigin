@@ -29,3 +29,7 @@ void ScoreComponent::Notify(const dae::GameObject& object, Event event)
 		break;;
 	}
 }
+void ScoreComponent::Refresh(const dae::GameObject& actor)
+{
+	ChangeText(actor);
+}

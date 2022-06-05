@@ -20,6 +20,7 @@ dae::GameObject::~GameObject()
 		delete comp;
 		comp = nullptr;
 	}
+	m_Components.clear();
 }
 
 void dae::GameObject::Update() {
@@ -144,8 +145,8 @@ void dae::GameObject::RemoveChild(GameObject* childToRemove)
 	{
 		if (m_Children[i] == childToRemove)
 		{
-			//Remove the given child from the children list
-			m_Children.erase(m_Children.begin() + i);
+			
+			m_Children.erase(std::remove(m_Children.begin(), m_Children.end(), m_Children[i]));
 		}
 	}
 }

@@ -12,6 +12,7 @@ public:
 	void Render() override {};
 	void SetId(unsigned int id) { m_Id = id; }
 private:
+
 	void HandleEnemies();
 	float m_MaxTime = 1.f;
 	float m_AccuTime = 0.f;

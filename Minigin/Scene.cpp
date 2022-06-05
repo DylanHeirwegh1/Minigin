@@ -25,7 +25,7 @@ void dae::Scene::Remove(unsigned int id)
 		&std::pair<unsigned int, std::shared_ptr<SceneObject>>::first);
 
 	m_Objects.erase(it);
-
+	//m_Objects.erase(std::remove(m_Objects.begin(), m_Objects.end(), id));
 	//pVector.erase(std::remove(pVector.begin(), pVector.end(), obj), pVector.end());
 }
 

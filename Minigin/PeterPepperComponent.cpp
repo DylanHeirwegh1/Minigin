@@ -1,6 +1,5 @@
 #include "MiniginPCH.h"
 #include "PeterPepperComponent.h"
-
 #include "EnemyComponent.h"
 #include "ImageComponent.h"
 #include "PepperComponent.h"
@@ -14,6 +13,8 @@ void PeterPepperComponent::Render()
 
 void PeterPepperComponent::Update()
 {
+	HandleDeath();
+
 	HandleAttackRate();
 	HandleStateUpdate();
 	HandleEnemyCollision();
@@ -21,8 +22,10 @@ void PeterPepperComponent::Update()
 
 void PeterPepperComponent::Die()
 {
+	if (m_Dead)return;
+	m_Dead = true;
 	--m_Lives;
-	m_Subject->Notify(*m_Owner, Event::ActorDied);
+
 	auto& t1 = ServiceLocator::GetSoundSystem();
 	if (!m_AddedSound) InitSound();
 	t1.Play(static_cast<soundId>(m_SoundID), 100);
@@ -32,6 +35,7 @@ void PeterPepperComponent::Attack()
 {
 	if (!m_CanAttack || m_Peppers == 0 || !m_Owner->IsActive())return;
 	--m_Peppers;
+	m_Subject->Notify(*m_Owner, Event::PepperThrown);
 	m_CanAttack = false;
 	m_Movement->Freeze(true);
 	auto& scene = dae::SceneManager::GetInstance().GetActiveScene();
@@ -58,7 +62,7 @@ void PeterPepperComponent::Attack()
 	p->SetId(id);
 }
 
-void PeterPepperComponent::Notify(const dae::GameObject& /*actor*/, Event event)
+void PeterPepperComponent::Notify(const dae::GameObject& actor, Event event)
 {
 	switch (event)
 	{
@@ -79,7 +83,23 @@ void PeterPepperComponent::Notify(const dae::GameObject& /*actor*/, Event event)
 		ServiceLocator::GetSoundSystem().Play(static_cast<soundId>(m_WalkSoundId), 100);
 		break;
 	case Event::LevelComplete:
-		m_Subject->Notify(*m_Owner, Event::LevelComplete);
+		m_Subject->Notify(actor, Event::LevelComplete);
+		break;
+	}
+}
+
+void PeterPepperComponent::HandleDeath()
+{
+	if (!m_Dead)return;
+	float delay = 1.f;
+	m_DeathAccuTime += Timer::GetInstance().GetElapsedSeconds();
+	if (m_DeathAccuTime > delay)
+	{
+		m_DeathAccuTime = 0.f;
+		m_Dead = false;
+		m_Subject->Notify(*m_Owner, Event::ActorDied);
+		auto sprite = m_Owner->GetComponent<ImageComponent>();
+		sprite->SetFramesPerSecond(15);
 	}
 }
 
@@ -148,16 +168,19 @@ void PeterPepperComponent::HandleStateUpdate()
 	if (!m_Movement) return;
 	if (!m_CanHandleStates)return;
 	auto newState = m_Movement->GetCurrentState();
-	//if (m_CurrentState == newState) return;
 
 	auto sprite = m_Owner->GetComponent<ImageComponent>();
 	if (!sprite) return;
 
 	if (m_CurrentState == MovementComponent::MovementState::GoingRight) sprite->FlipTexture(SDL_FLIP_NONE);
 
-	// pp is attacking
-
-	//switch texture settings for each state
+	if (m_Dead)
+	{
+		sprite->SetFramesPerSecond(5);
+		sprite->SetStartFrame(12);
+		sprite->SetEndFrame(17);
+		return;
+	}
 
 	switch (newState)
 	{
@@ -223,6 +246,7 @@ void PeterPepperComponent::HandleStateUpdate()
 
 void PeterPepperComponent::HandleEnemyCollision()
 {
+	const float yOffset = 15.f;
 	auto rb = m_Owner->GetComponent<RigidBody>();
 	if (!rb) return;
 
@@ -230,8 +254,11 @@ void PeterPepperComponent::HandleEnemyCollision()
 	{
 		if (!element->GetComponent<EnemyComponent>()->IsStunned())
 		{
-			Die();
-			return;
+			if (element->GetWorldPosition().y - yOffset< m_Owner->GetWorldPosition().y && element->GetWorldPosition().y + yOffset>m_Owner->GetWorldPosition().y)
+			{
+				Die();
+				return;
+			}
 		}
 	}
 }

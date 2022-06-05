@@ -1,0 +1,447 @@
+[
+  {
+    "type": "image",
+    "pos": [ 320, 640 ],
+    "size": [ 635, 540 ],
+    "path": "../Data/Sprites/level2.png"
+  },
+  {
+    "type": "plate",
+    "pos": [ 100, 653 ],
+    "size": [ 100, 20 ]
+  },
+  {
+    "type": "plate",
+    "pos": [ 245, 653 ],
+    "size": [ 100, 20 ]
+  },
+  {
+    "type": "plate",
+    "pos": [ 395, 653 ],
+    "size": [ 100, 20 ]
+  },
+  {
+    "type": "plate",
+    "pos": [ 545, 653 ],
+    "size": [ 100, 20 ]
+  },
+  {
+    "type": "block",
+    "pos": [ 318, 442 ],
+    "size": [ 635, 6 ]
+  },
+  {
+    "type": "block",
+    "pos": [ 318, 399 ],
+    "size": [ 635, 6 ]
+  },
+  {
+    "type": "block",
+    "pos": [ 318, 356 ],
+    "size": [ 635, 6 ]
+  },
+  {
+    "type": "block",
+    "pos": [ 318, 312 ],
+    "size": [ 635, 6 ]
+  },
+  {
+    "type": "block",
+    "pos": [ 318, 269 ],
+    "size": [ 635, 6 ]
+  },
+  {
+    "type": "block",
+    "pos": [ 318, 226 ],
+    "size": [ 635, 6 ]
+  },
+  {
+    "type": "block",
+    "pos": [ 318, 182 ],
+    "size": [ 635, 6 ]
+  },
+  {
+    "type": "block",
+    "pos": [ 318, 138 ],
+    "size": [ 635, 6 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 25, 180 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 175, 180 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 320, 180 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 465, 180 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 615, 180 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 25, 269 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 175, 269 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 465, 269 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 615, 269 ],
+    "size": [ 6, 48 ]
+  },
+
+  {
+    "type": "ladder",
+    "pos": [ 175, 356 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 465, 356 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 175, 441 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 465, 441 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 245, 225 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 100, 225 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 540, 225 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 394, 225 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 245, 312 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 100, 312 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 540, 312 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 394, 312 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 245, 399 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 100, 399 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 540, 399 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 394, 399 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 322, 441 ],
+    "size": [ 6, 48 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 317, 355 ],
+    "size": [ 6, 136 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 25, 442 ],
+    "size": [ 6, 136 ]
+  },
+  {
+    "type": "ladder",
+    "pos": [ 615, 442 ],
+    "size": [ 6, 136 ]
+  },
+
+  {
+    "type": "ingredient",
+    "pos": [ 100, 140 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 0, 1 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 245, 140 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 0, 1 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 395, 140 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 0, 1 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 545, 140 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 0, 1 ]
+  },
+
+  {
+    "type": "ingredient",
+    "pos": [ 100, 183 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 2, 3 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 245, 183 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 5, 6 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 395, 183 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 4, 5 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 545, 183 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 2, 3 ]
+  },
+
+  {
+    "type": "ingredient",
+    "pos": [ 100, 226 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 4, 5 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 245, 226 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 4, 5 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 395, 226 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 5, 6 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 545, 226 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 5, 6 ]
+  },
+
+  {
+    "type": "ingredient",
+    "pos": [ 100, 269 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 5, 6 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 245, 269 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 3, 4 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 395, 269 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 4, 5 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 545, 269 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 3, 4 ]
+  },
+
+  {
+    "type": "ingredient",
+    "pos": [ 100, 312 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 3, 4 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 245, 312 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 4, 5 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 395, 312 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 3, 4 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 545, 312 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 4, 5 ]
+  },
+
+  {
+    "type": "ingredient",
+    "pos": [ 100, 355 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 5, 6 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 245, 355 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 2, 3 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 395, 355 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 2, 3 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 545, 355 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 5, 6 ]
+  },
+
+  {
+    "type": "ingredient",
+    "pos": [ 100, 398 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 4, 5 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 245, 398 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 5, 6 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 395, 398 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 5, 6 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 545, 398 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 4, 5 ]
+  },
+
+  {
+    "type": "ingredient",
+    "pos": [ 100, 441 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 1, 2 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 245, 441 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 1, 2 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 395, 441 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 1, 2 ]
+  },
+  {
+    "type": "ingredient",
+    "pos": [ 545, 441 ],
+    "size": [ 100, 15 ],
+    "path": "../Data/Sprites/burger.png",
+    "frames": [ 1, 2 ]
+  }
+
+]

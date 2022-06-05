@@ -23,9 +23,6 @@ BurgerTimeScene::BurgerTimeScene()
 	FPSTimer->GetComponent<TextComponent>()->SetColor({ 0,255,0,255 });
 	FPSTimer->AddComponent<FPSComponent>();*/
 
-	char c[256]{};
-	SDL_filesystem_h_::_getcwd(c, 256);
-	std::cout << "Current directory is: " << std::string(c);
 	FPSTimer->AddComponent<ImageComponent>();
 	FPSTimer->GetComponent<ImageComponent>()->SetTexture("Sprites/level.png");
 	auto wSize = dae::Renderer::GetInstance().GetWindowDimensions();

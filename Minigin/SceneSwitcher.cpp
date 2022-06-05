@@ -5,7 +5,8 @@
 #include "EnemyComponent.h"
 #include "HighScoreComponent.h"
 #include "LivesComponent.h"
-#include "MenuComponent.h"
+//#include "MenuComponent.h"
+#include "PepperTextComponent.h"
 #include "ResourceManager.h"
 #include "SceneLoader.h"
 #include "ScoreComponent.h"
@@ -13,27 +14,81 @@
 
 void SceneSwitcher::LoadLevel1()
 {
-	dae::SceneManager::GetInstance().RemoveScene();
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("level1" + std::to_string(rand()));
 	SceneLoader::GetInstance().LoadLevelFromFile(L"../Data/TextFiles/level.json", scene);
-	AddPeterPepper(scene, { 100,220,0 });
-	AddMrsSalt(scene, { 150,220,0 });
-	AddPlayerSausage(scene, { 399,138,0 });
-	//AddSausage(scene, { 399,138,0 });
-	AddFpsComponent(scene, { 200,50,0 });
+	AddPeterPepper(scene, { 100,221,0 });
+	AddMrsSalt(scene, { 150,221,0 });
 
-	AddPickle(scene, { 399,138,0 });
+	AddPlayerSausage(scene, { 399,138,0 });
+
+	if (m_CurrGameMode != GameMode::PVP)
+		AddSausage(scene, { 399,138,0 });
+
+	AddSausage(scene, { 510,138,0 });
+	AddSausage(scene, { 10,138,0 });
+	AddSausage(scene, { 10,399,0 });
+	AddEgg(scene, { 10,510,0 });
+
+	AddFpsComponent(scene, { 600,50,0 });
+
+	AddPickle(scene, { 499,528,0 });
 	AddText(scene);
 	SetInputCommands();
 	m_FirstLoad = false;
+
+	dae::SceneManager::GetInstance().RemoveOld();
 }
 
 void SceneSwitcher::LoadLevel2()
 {
+	auto& scene = dae::SceneManager::GetInstance().CreateScene("level2" + std::to_string(rand()));
+	SceneLoader::GetInstance().LoadLevelFromFile(L"../Data/TextFiles/level2.json", scene);
+
+	AddPeterPepper(scene, { 100,222,0 });
+	AddMrsSalt(scene, { 150,222,0 });
+	AddPlayerSausage(scene, { 399,136,0 });
+
+	if (m_CurrGameMode != GameMode::PVP)
+		AddSausage(scene, { 399,134,0 });
+
+	AddSausage(scene, { 510,134,0 });
+	AddSausage(scene, { 10,134,0 });
+	AddSausage(scene, { 10,399,0 });
+	AddEgg(scene, { 10,410,0 });
+
+	AddFpsComponent(scene, { 600,50,0 });
+
+	AddPickle(scene, { 399,136,0 });
+	AddText(scene);
+	SetInputCommands();
+
+	dae::SceneManager::GetInstance().RemoveOld();
 }
 
 void SceneSwitcher::LoadLevel3()
 {
+	auto& scene = dae::SceneManager::GetInstance().CreateScene("level3" + std::to_string(rand()));
+	SceneLoader::GetInstance().LoadLevelFromFile(L"../Data/TextFiles/level3.json", scene);
+
+	AddPeterPepper(scene, { 20,600,0 });
+	AddMrsSalt(scene, { 20,550,0 });
+	AddPlayerSausage(scene, { 399,136,0 });
+
+	if (m_CurrGameMode != GameMode::PVP)
+		AddSausage(scene, { 399,134,0 });
+
+	AddSausage(scene, { 540,300,0 });
+	AddSausage(scene, { 10,136,0 });
+	AddSausage(scene, { 460,399,0 });
+	AddEgg(scene, { 610,350,0 });
+
+	AddFpsComponent(scene, { 600,50,0 });
+
+	AddPickle(scene, { 399,136,0 });
+	AddText(scene);
+	SetInputCommands();
+
+	dae::SceneManager::GetInstance().RemoveOld();
 }
 
 void SceneSwitcher::Initialize(dae::GameObject* owner)
@@ -44,7 +99,7 @@ void SceneSwitcher::Initialize(dae::GameObject* owner)
 
 void SceneSwitcher::LoadLevel(int nr)
 {
-	std::cout << "Load level";
+	std::cout << "Load level" << nr << std::endl;
 	m_Enemies.clear();
 	m_CurrLevel = nr;
 	switch (m_CurrLevel)
@@ -83,6 +138,9 @@ void SceneSwitcher::Notify(const dae::GameObject& /*actor*/, Event event)
 	case Event::LoadLevel2:
 		if (m_CurrLevel != 2)LoadLevel(2);
 		break;
+	case Event::LoadLevel3:
+		if (m_CurrLevel != 3)LoadLevel(3);
+		break;
 	case Event::COOP:
 		SwitchGameMode(GameMode::COOP);
 		break;
@@ -94,8 +152,10 @@ void SceneSwitcher::Notify(const dae::GameObject& /*actor*/, Event event)
 		break;
 	case Event::LevelComplete:
 		m_CurrLevel++;
-		LoadLevel(m_CurrLevel % 3);
+		LoadLevel((m_CurrLevel - 1) % 3 + 1);
 		break;
+	case Event::EnemyDied:
+		HandleRespawnEnemies();
 	}
 }
 
@@ -106,26 +166,33 @@ SceneSwitcher::~SceneSwitcher()
 void SceneSwitcher::Reset()
 {
 	if (m_PeterPepper.Object->GetComponent<PeterPepperComponent>()->GetLives() == 0)
-		m_PeterPepper.Object->SetActive(false);
+	{
+		//m_PeterPepper.Object->SetActive(false);
+		LoadLevel(1);
+		m_PeterPepper.Object->GetComponent<PeterPepperComponent>()->GameReset();
+		m_Salt.Object->GetComponent<PeterPepperComponent>()->GameReset();
+
+		m_PPScoreText->GetComponent<ScoreComponent>()->Refresh(*m_PeterPepper.Object.get());
+
+		m_PPLivesText->GetComponent<LivesComponent>()->Refresh(*m_PeterPepper.Object.get());
+		m_SaltLivesText->GetComponent<LivesComponent>()->Refresh(*m_Salt.Object.get());
+		m_PPPeppersText->GetComponent<PepperTextComponent>()->Refresh(*m_PeterPepper.Object.get());
+		m_SaltPeppersText->GetComponent<PepperTextComponent>()->Refresh(*m_Salt.Object.get());
+	}
 
 	if (m_Salt.Object->GetComponent<PeterPepperComponent>()->GetLives() == 0)
-		m_PeterPepper.Object->SetActive(false);
+		m_Salt.Object->SetActive(false);
 
 	m_PeterPepper.Object->SetWorldPosition(m_PeterPepper.StartPos);
 	m_PeterPepper.Object->GetComponent<RigidBody>()->ResetPos();
 
-	if (m_PlayerSausage.Object->IsActive())
-	{
-		m_PlayerSausage.Object->SetWorldPosition(m_PlayerSausage.StartPos);
-		m_PlayerSausage.Object->GetComponent<RigidBody>()->ResetPos();
-	}
-	else if (m_Salt.Object->IsActive())
-	{
-		m_Salt.Object->SetWorldPosition(m_Salt.StartPos);
-		m_Salt.Object->GetComponent<RigidBody>()->ResetPos();
-	}
+	m_PlayerSausage.Object->SetWorldPosition(m_PlayerSausage.StartPos);
+	m_PlayerSausage.Object->GetComponent<RigidBody>()->ResetPos();
 
-	for (auto sausage : m_Enemies)
+	m_Salt.Object->SetWorldPosition(m_Salt.StartPos);
+	m_Salt.Object->GetComponent<RigidBody>()->ResetPos();
+
+	for (auto& sausage : m_Enemies)
 	{
 		sausage.Object->SetActive(true);
 		sausage.Object->SetWorldPosition(sausage.StartPos);
@@ -210,10 +277,11 @@ void SceneSwitcher::AddPeterPepper(dae::Scene& scene, glm::vec3 pos)
 		m_PeterPepper.Object->GetComponent<ImageComponent>()->SetFramesPerSecond(15);
 		m_PeterPepper.Object->AddComponent<PeterPepperComponent>();
 	}
-	m_PeterPepper.Object->AddComponent<RigidBody>()->SetSize({ 28,39 });
+	m_PeterPepper.Object->AddComponent<RigidBody>()->SetSize({ 28,35 });
 	m_PeterPepper.Object->GetComponent<RigidBody>()->SetTag("Player");
 	m_PeterPepper.Object->GetComponent<RigidBody>()->OverlapWithTag({ "Enemy" , "Ingredient","Ladder" });
 	m_PeterPepper.Object->GetComponent<RigidBody>()->SetCollision(PhysicsManager::CollisionType::TRIGGER);
+	m_PeterPepper.Object->GetComponent<RigidBody>()->SetVisible(true);
 	scene.Add(m_PeterPepper.Object);
 }
 
@@ -271,12 +339,13 @@ void SceneSwitcher::AddSausage(dae::Scene& scene, glm::vec3 pos)
 
 	sausage.Object->GetComponent<EnemyComponent>()->GetSubject()->AddObserver(m_PeterPepper.Object->GetComponent<PeterPepperComponent>());
 	sausage.Object->GetComponent<EnemyComponent>()->GetSubject()->AddObserver(m_Salt.Object->GetComponent<PeterPepperComponent>());
+	sausage.Object->GetComponent<EnemyComponent>()->GetSubject()->AddObserver(this);
 }
 
 void SceneSwitcher::AddEgg(dae::Scene& scene, glm::vec3 pos)
 {
 	AddSausage(scene, pos);
-	auto egg = m_Enemies[m_Enemies.size() - 1];
+	auto& egg = m_Enemies[m_Enemies.size() - 1];
 	egg.Object->GetComponent<ImageComponent>()->SetTexture("Sprites/Egg.png");
 	egg.Object->GetComponent<EnemyComponent>()->SetType(EnemyComponent::Type::Egg);
 }
@@ -284,9 +353,9 @@ void SceneSwitcher::AddEgg(dae::Scene& scene, glm::vec3 pos)
 void SceneSwitcher::AddPickle(dae::Scene& scene, glm::vec3 pos)
 {
 	AddSausage(scene, pos);
-	auto egg = m_Enemies[m_Enemies.size() - 1];
-	egg.Object->GetComponent<ImageComponent>()->SetTexture("Sprites/Pickle.png");
-	egg.Object->GetComponent<EnemyComponent>()->SetType(EnemyComponent::Type::Pickle);
+	auto& pickle = m_Enemies[m_Enemies.size() - 1];
+	pickle.Object->GetComponent<ImageComponent>()->SetTexture("Sprites/Pickle.png");
+	pickle.Object->GetComponent<EnemyComponent>()->SetType(EnemyComponent::Type::Pickle);
 }
 
 void SceneSwitcher::AddPlayerSausage(dae::Scene& scene, glm::vec3 pos)
@@ -324,18 +393,7 @@ void SceneSwitcher::AddPlayerSausage(dae::Scene& scene, glm::vec3 pos)
 	if (m_CurrGameMode == GameMode::PVP)
 		m_PlayerSausage.Object->SetActive(true);
 	else m_PlayerSausage.Object->SetActive(false);
-}
-
-void SceneSwitcher::AddMenu(dae::Scene& scene)
-{
-	if (!m_Menu)
-	{
-		std::cout << "Created menu";
-		m_Menu = std::make_shared<dae::GameObject>();
-		m_Menu->AddComponent<MenuComponent>();
-		m_Menu->GetComponent<MenuComponent>()->GetSubject()->AddObserver(this);
-	}
-	scene.Add(m_Menu);
+	m_PlayerSausage.Object->GetComponent<EnemyComponent>()->GetSubject()->AddObserver(this);
 }
 
 void SceneSwitcher::AddText(dae::Scene& scene)
@@ -345,9 +403,13 @@ void SceneSwitcher::AddText(dae::Scene& scene)
 		scene.Add(m_PPLivesText);
 		scene.Add(m_PPScoreText);
 		scene.Add(m_HighScoreText);
+		scene.Add(m_PPPeppersText);
 
 		if (m_CurrGameMode == GameMode::COOP)
+		{
 			scene.Add(m_SaltLivesText);
+			scene.Add(m_SaltPeppersText);
+		}
 		return;
 	}
 	auto pp = m_PeterPepper.Object->GetComponent<PeterPepperComponent>();
@@ -365,7 +427,7 @@ void SceneSwitcher::AddText(dae::Scene& scene)
 	pp->GetSubject()->AddObserver(ppLives);
 
 	m_PPScoreText = std::make_shared<dae::GameObject>();
-	m_PPScoreText->SetWorldPosition({ 0,50,0 });
+	m_PPScoreText->SetWorldPosition({ 0,20,0 });
 	auto score = m_PPScoreText->AddComponent<TextComponent>();
 
 	score->SetText("Score: 0");
@@ -397,4 +459,43 @@ void SceneSwitcher::AddText(dae::Scene& scene)
 	scene.Add(m_HighScoreText);
 
 	m_PeterPepper.Object->GetComponent<PeterPepperComponent>()->GetSubject()->AddObserver(highScoreComp);
+
+	m_PPPeppersText = std::make_shared<dae::GameObject>();
+	m_PPPeppersText->SetWorldPosition({ 100,50,0 });
+	auto pepperText = m_PPPeppersText->AddComponent<TextComponent>();
+	pepperText->SetFont(font);
+	pepperText->SetText("Peppers: 5");
+	auto peppercomp = m_PPPeppersText->AddComponent < PepperTextComponent >();
+	scene.Add(m_PPPeppersText);
+
+	m_PeterPepper.Object->GetComponent<PeterPepperComponent>()->GetSubject()->AddObserver(peppercomp);
+
+	m_SaltPeppersText = std::make_shared<dae::GameObject>();
+	m_SaltPeppersText->SetWorldPosition({ 220,50,0 });
+	auto saltText = m_SaltPeppersText->AddComponent<TextComponent>();
+	saltText->SetFont(font);
+	saltText->SetText("Peppers: 5");
+	auto saltComp = m_SaltPeppersText->AddComponent < PepperTextComponent >();
+	if (m_CurrGameMode == GameMode::COOP)
+		scene.Add(m_SaltPeppersText);
+
+	m_Salt.Object->GetComponent<PeterPepperComponent>()->GetSubject()->AddObserver(saltComp);
+}
+
+void SceneSwitcher::HandleRespawnEnemies()
+{
+	if (!m_PlayerSausage.Object->IsActive() && m_CurrGameMode == GameMode::PVP)
+	{
+		m_PlayerSausage.Object->SetWorldPosition(m_PlayerSausage.StartPos);
+		m_PlayerSausage.Object->SetActive(true);
+		m_PlayerSausage.Object->GetComponent<RigidBody>()->ResetPos();
+	}
+	for (const auto& enemy : m_Enemies)
+	{
+		if (enemy.Object->IsActive()) continue;
+
+		enemy.Object->SetWorldPosition(enemy.StartPos);
+		enemy.Object->SetActive(true);
+		enemy.Object->GetComponent<RigidBody>()->ResetPos();
+	}
 }

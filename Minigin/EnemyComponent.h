@@ -22,6 +22,7 @@ public:
 	void SetPlayer(bool value) { m_IsPlayer = value; }
 	Subject* GetSubject() const { return m_Subject.get(); };
 	void SetType(Type type) { m_Type = type; }
+
 private:
 	void HandleMovement();
 	void HandleInteractions();

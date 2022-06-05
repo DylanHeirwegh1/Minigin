@@ -34,6 +34,7 @@ private:
 	void AddPlayerSausage(dae::Scene& scene, glm::vec3 pos);
 	void AddMenu(dae::Scene& scene);
 	void AddText(dae::Scene& scene);
+	void HandleRespawnEnemies();
 
 	struct sceneObj
 	{
@@ -48,9 +49,11 @@ private:
 
 	int m_CurrLevel{ 0 };
 	bool m_FirstLoad = true;
-	GameMode m_CurrGameMode{ GameMode::PVP };
+	GameMode m_CurrGameMode{ GameMode::SINGLE };
 	std::shared_ptr<dae::GameObject> m_PPLivesText;
 	std::shared_ptr<dae::GameObject> m_PPScoreText;
+	std::shared_ptr<dae::GameObject> m_PPPeppersText;
+	std::shared_ptr<dae::GameObject> m_SaltPeppersText;
 
 	std::shared_ptr<dae::GameObject> m_SaltLivesText;
 	std::shared_ptr<dae::GameObject> m_SaltScoreText;

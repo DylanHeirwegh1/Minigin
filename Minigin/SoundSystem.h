@@ -56,6 +56,7 @@ public:
 private:
 	void Update();
 	void StartUpdating();
+	void HandleDeath();
 	std::vector<AudioClip> m_AudioClips
 	{
 	};

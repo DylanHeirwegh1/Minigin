@@ -13,6 +13,7 @@ void EnemyComponent::Update()
 	if (!m_MovementComponent) m_MovementComponent = m_Owner->GetComponent<MovementComponent>();
 	if (!m_ImageComponent) m_ImageComponent = m_Owner->GetComponent<ImageComponent>();
 	if (!m_Rb) m_Rb = m_Owner->GetComponent<RigidBody>();
+
 	if (!m_Stunned)HandleMovement();
 
 	HandleInteractions();
@@ -62,7 +63,7 @@ void EnemyComponent::HandleInteractions()
 {
 	auto overlappers = m_Rb->GetOverlappersWithTag("Ingredient");
 	if (overlappers.size() == 0) return;
-	for (auto overlapper : overlappers)
+	for (const auto& overlapper : overlappers)
 	{
 		if (overlapper->GetComponent<MovementComponent>()->GetCurrentState() == MovementComponent::MovementState::GoingDown)
 		{
@@ -90,13 +91,13 @@ void EnemyComponent::HandleSprite(MovementComponent::MovementState state)
 	switch (state)
 	{
 	case MovementComponent::MovementState::GoingDown:
-		m_ImageComponent->SetStartFrame(4);
-		m_ImageComponent->SetEndFrame(5);
+		m_ImageComponent->SetStartFrame(0);
+		m_ImageComponent->SetEndFrame(1);
 
 		break;
 	case MovementComponent::MovementState::GoingUp:
-		m_ImageComponent->SetStartFrame(0);
-		m_ImageComponent->SetEndFrame(1);
+		m_ImageComponent->SetStartFrame(4);
+		m_ImageComponent->SetEndFrame(5);
 		break;
 	case MovementComponent::MovementState::GoingLeft:
 		m_ImageComponent->SetStartFrame(2);
@@ -205,5 +206,6 @@ void EnemyComponent::HandleDeath()
 		m_Owner->SetActive(false);
 		m_DeathAccuTime = 0.f;
 		m_Dead = false;
+		m_Subject->Notify(*m_Owner, Event::EnemyDied);
 	}
 }

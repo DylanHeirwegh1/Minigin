@@ -20,6 +20,8 @@ private:
 	void HandlePlate();
 	void AddObservers();
 	bool LevelComplete();
+	bool m_ShouldHandle();
+
 	bool m_ObserversAdded = false;
 	std::pair<float, bool> m_MiddlePoints[5]{};
 	RigidBody* m_Rb = nullptr;
