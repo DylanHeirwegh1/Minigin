@@ -1,7 +1,8 @@
 #pragma once
 #include "BaseComponent.h"
 #include "RigidBody.h"
-
+#include "glm/glm.hpp"
+#include "SDL.h"
 class MovementComponent : public BaseComponent
 {
 public:

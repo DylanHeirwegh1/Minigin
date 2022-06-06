@@ -2,7 +2,6 @@
 #include <thread>
 
 #include "AudioClip.h"
-#include "SDL_mixer.h"
 
 using soundId = unsigned short;
 

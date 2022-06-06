@@ -1,9 +1,8 @@
-#include "MiniginPCH.h"
+#include "pch.h"
 #include "HealthComponent.h"
 
 #include "PeterPepperComponent.h"
 #include "TextComponent.h"
-#include "SDL_mixer.h"
 
 HealthComponent::HealthComponent()
 {

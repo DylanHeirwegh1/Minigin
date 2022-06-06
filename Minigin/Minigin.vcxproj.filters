@@ -99,9 +99,6 @@
     <ClInclude Include="Observer.h">
       <Filter>Observer</Filter>
     </ClInclude>
-    <ClInclude Include="Achievements.h">
-      <Filter>Observer</Filter>
-    </ClInclude>
     <ClInclude Include="Event.h">
       <Filter>Observer</Filter>
     </ClInclude>
@@ -111,26 +108,11 @@
     <ClInclude Include="XBox360Controller.h">
       <Filter>Input</Filter>
     </ClInclude>
-    <ClInclude Include="Command.h">
-      <Filter>Input</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Input</Filter>
     </ClInclude>
-    <ClInclude Include="PeterPepperComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="HealthComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ObserverScene.h">
-      <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Scenes</Filter>
@@ -141,20 +123,11 @@
     <ClInclude Include="SoundSystem.h">
       <Filter>Audio</Filter>
     </ClInclude>
-    <ClInclude Include="SoundScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="AudioClip.h">
       <Filter>Audio</Filter>
     </ClInclude>
-    <ClInclude Include="BurgerTimeScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="KeyBoard.h">
       <Filter>Input</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementComponent.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="RigidBody.h">
       <Filter>Components</Filter>
@@ -162,31 +135,7 @@
     <ClInclude Include="PhysicsManager.h">
       <Filter>Physics</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="BTScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IngredientComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="PepperComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneSwitcher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LivesComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HighScoreComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PepperTextComponent.h">
+    <ClInclude Include="Command.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -236,9 +185,6 @@
     <ClCompile Include="FPSComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Achievements.cpp">
-      <Filter>Observer</Filter>
-    </ClCompile>
     <ClCompile Include="Subject.cpp">
       <Filter>Observer</Filter>
     </ClCompile>
@@ -247,18 +193,6 @@
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Input</Filter>
-    </ClCompile>
-    <ClCompile Include="PeterPepperComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="HealthComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="ObserverScene.cpp">
-      <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Scenes</Filter>
@@ -269,53 +203,17 @@
     <ClCompile Include="SoundSystem.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
-    <ClCompile Include="SoundScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="AudioClip.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
-    <ClCompile Include="BurgerTimeScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="KeyBoard.cpp">
       <Filter>Input</Filter>
-    </ClCompile>
-    <ClCompile Include="MovementComponent.cpp">
-      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="RigidBody.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsManager.cpp">
       <Filter>Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="BTScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IngredientComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="PepperComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneSwitcher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LivesComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HighScoreComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PepperTextComponent.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,9 @@
-#include "MiniginPCH.h"
+#include "pch.h"
 #include "MovementComponent.h"
 
 #include "ImageComponent.h"
 #include "Timer.h"
+#include <SDL_rect.h>
 
 void MovementComponent::Update()
 {
@@ -53,8 +54,9 @@ bool MovementComponent::IsGrounded(float posX)
 	auto posY = m_Owner->GetWorldPosition().y;
 	for (auto& block : blocks)
 	{
-		auto r = SDL_Rect(static_cast<int>(block.x), static_cast<int>(block.y), static_cast<int>(block.z),
-			static_cast<int>(block.w));
+		auto r = SDL_Rect{ static_cast<int>(block.x), static_cast<int>(block.y), static_cast<int>(block.z),
+			static_cast<int>(block.w) };
+
 		int x1{ static_cast<int>(posX) }, y1{ static_cast<int>(posY) }, x2{ x1 }, y2{ y1 + 1 };
 
 		if (SDL_IntersectRectAndLine(&r, &x1, &y1, &x2, &y2))

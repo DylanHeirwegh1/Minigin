@@ -1,4 +1,4 @@
-#include "MiniginPCH.h"
+#include "pch.h"
 #include "SceneSwitcher.h"
 
 #include "BTScene.h"
@@ -6,6 +6,7 @@
 #include "HighScoreComponent.h"
 #include "LivesComponent.h"
 //#include "MenuComponent.h"
+#include "Command.h"
 #include "PepperTextComponent.h"
 #include "ResourceManager.h"
 #include "SceneLoader.h"
@@ -281,7 +282,7 @@ void SceneSwitcher::AddPeterPepper(dae::Scene& scene, glm::vec3 pos)
 	m_PeterPepper.Object->GetComponent<RigidBody>()->SetTag("Player");
 	m_PeterPepper.Object->GetComponent<RigidBody>()->OverlapWithTag({ "Enemy" , "Ingredient","Ladder" });
 	m_PeterPepper.Object->GetComponent<RigidBody>()->SetCollision(PhysicsManager::CollisionType::TRIGGER);
-	m_PeterPepper.Object->GetComponent<RigidBody>()->SetVisible(true);
+	//m_PeterPepper.Object->GetComponent<RigidBody>()->SetVisible(true);
 	scene.Add(m_PeterPepper.Object);
 }
 

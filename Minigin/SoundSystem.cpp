@@ -23,7 +23,6 @@ int SDLSoundSystem::AddAudioClip(std::string path, float volume, int loops)
 
 SDLSoundSystem::~SDLSoundSystem()
 {
-	std::cout << "Destructor soundsystem";
 	m_Update = false;
 	m_SoundThread.join();
 	Mix_CloseAudio();

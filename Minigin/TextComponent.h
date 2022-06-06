@@ -4,6 +4,7 @@
 #include <memory>
 #include "Font.h"
 #include "Texture2D.h"
+#include "SDL.h"
 
 class TextComponent : public BaseComponent
 {
@@ -24,4 +25,3 @@ private:
 	std::shared_ptr<dae::Texture2D> m_TextTexture{};
 	SDL_Color m_Color{ 255,255,255 };
 };
-

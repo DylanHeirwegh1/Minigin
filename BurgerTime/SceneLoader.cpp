@@ -1,4 +1,4 @@
-#include "MiniginPCH.h"
+#include "pch.h"
 #include "SceneLoader.h"
 #include "filereadstream.h"
 #include <document.h>
@@ -24,7 +24,7 @@ void SceneLoader::LoadLevelFromFile(const wchar_t* path, dae::Scene& scene)
 			auto rb = currBlock->AddComponent<RigidBody>();
 			rb->SetTag("Block");
 			rb->SetSize({ obj.size[0],obj.size[1] });
-			rb->SetVisible(true);
+			//rb->SetVisible(true);
 
 			scene.Add(currBlock);
 		}
@@ -50,7 +50,7 @@ void SceneLoader::LoadLevelFromFile(const wchar_t* path, dae::Scene& scene)
 			rb->SetSize({ static_cast<float>(obj.size[0]), static_cast<float>(obj.size[1]) });
 			rb->SetTag("Ingredient");
 			rb->OverlapWithTag({ "Player","Enemy","Ingredient","Plate","Ladder" });
-			rb->SetVisible(true);
+			//rb->SetVisible(true);
 			ingr->AddComponent<IngredientComponent>();
 			ingr->AddComponent<MovementComponent>()->SetMovementSpeed({ 0,60 });
 			scene.Add(ingr);
@@ -65,7 +65,7 @@ void SceneLoader::LoadLevelFromFile(const wchar_t* path, dae::Scene& scene)
 			plate->GetComponent<RigidBody>()->SetTag("Plate");
 			plate->GetComponent<RigidBody>()->OverlapWithTag({ "Ingredient" });
 			//plate->GetComponent<RigidBody>()->SetVisible(true);
-			plate->GetComponent<RigidBody>()->SetVisible(true);
+			//plate->GetComponent<RigidBody>()->SetVisible(true);
 			scene.Add(plate);
 		}
 		else if (obj.type == "ladder")
@@ -76,7 +76,7 @@ void SceneLoader::LoadLevelFromFile(const wchar_t* path, dae::Scene& scene)
 			auto rb = ladder->AddComponent<RigidBody>();
 			rb->SetTag("Ladder");
 			rb->SetSize({ obj.size[0],obj.size[1] });
-			rb->SetVisible(true);
+			//rb->SetVisible(true);
 			rb->OverlapWithTag({ "Player, Enemy, Ingredient" });
 
 			scene.Add(ladder);

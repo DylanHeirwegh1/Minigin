@@ -1,4 +1,4 @@
-#include "MiniginPCH.h"
+#include "pch.h"
 #include "LivesComponent.h"
 
 #include "PeterPepperComponent.h"

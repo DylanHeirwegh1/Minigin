@@ -1,4 +1,4 @@
-#include "MiniginPCH.h"
+#include "pch.h"
 #include "HighScoreComponent.h"
 #include <iostream>
 #include <fstream>

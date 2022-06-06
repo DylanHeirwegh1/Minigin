@@ -1,7 +1,8 @@
 #pragma once
-#include <SDL_mixer.h>
+#include "MiniginPCH.h"
 #include <thread>
 #include <mutex>
+#include <../SDL_MIXER/include/SDL_mixer.h>
 
 class AudioClip
 {
